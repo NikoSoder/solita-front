@@ -12,12 +12,25 @@ const App = () => {
   const [stations, setStations] = useState<Station[]>([]);
 
   useEffect(() => {
-    apiService.getTrips().then((response) => {
-      setTrips(response);
-    });
-    apiService.getStations().then((response) => {
-      setStations(response);
-    });
+    const fetchData = async () => {
+      try {
+        const tripsResponse = await apiService.getTrips();
+        setTrips(tripsResponse);
+      } catch (error) {
+        console.log(error);
+        alert("Something went wrong");
+      }
+
+      try {
+        const stationsResponse = await apiService.getStations();
+        setStations(stationsResponse);
+      } catch (error) {
+        console.log(error);
+        alert("Something went wrong");
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
