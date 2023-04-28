@@ -13,4 +13,14 @@ const getStations = async (): Promise<Station[]> => {
   return response.data;
 };
 
-export default { getTrips, getStations };
+const getTrip = async (id: string): Promise<Station> => {
+  const response = await axios.get(`${baseUrl}trips/${id}`);
+  return response.data;
+};
+
+const getStation = async (id: string): Promise<Station> => {
+  const response = await axios.get(`${baseUrl}stations/${id}`);
+  return response.data;
+};
+
+export default { getTrips, getStations, getTrip, getStation };
