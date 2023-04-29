@@ -1,14 +1,15 @@
 import { Trip } from "../types/ITrip";
+
 type ChildPropsTable = {
   trips: Trip[];
 };
-// TODO: change covered distance to km and duration to minutes **************
+
 const Table = ({ trips }: ChildPropsTable) => {
   return (
     <div className="overflow-x-auto">
-      <table className="table-auto bg-white shadow-2xl dark:bg-slate-800">
+      <table className="main-shadow table-auto bg-white dark:bg-slate-800 dark:shadow-2xl">
         <thead>
-          <tr className="bg-slate-200 dark:bg-slate-700 dark:text-slate-300">
+          <tr className="bg-sky-800 tracking-wide text-slate-100 dark:bg-sky-700 dark:text-slate-100">
             <th>Departure</th>
             <th>Return</th>
             <th>Distance (km)</th>
