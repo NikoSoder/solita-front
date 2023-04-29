@@ -23,8 +23,10 @@ const Table = ({ trips }: ChildPropsTable) => {
             >
               <td>{trip.departureStationName}</td>
               <td>{trip.returnStationName}</td>
-              <td>{trip.coveredDistance}</td>
-              <td>{trip.duration}</td>
+              {/* change meters to km and then round to 2 decimals */}
+              <td>{Math.round((trip.coveredDistance / 1000) * 100) / 100}</td>
+              {/* change seconds to minutes */}
+              <td>{Math.round(trip.duration / 60)}</td>
             </tr>
           ))}
         </tbody>
