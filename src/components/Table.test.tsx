@@ -1,40 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import Table from "./Table";
+import { mockTrips } from "../mocks/mockTrips";
+import { convertSecondsToMinutes } from "../utils/secondsToMinutes";
 
 describe("Table", () => {
   it("renders Table component", async () => {
-    /* TODO: move mocks to own folder */
-    const mockTrips = [
-      {
-        id: "1",
-        departure: "test 1 departure",
-        return: "test 1 return",
-        departureStationId: "10",
-        departureStationName: "test departune name",
-        returnStationId: "34",
-        returnStationName: "test return name",
-        coveredDistance: 1405,
-        duration: 676,
-      },
-      {
-        id: "2",
-        departure: "test 2 departure",
-        return: "test 2 return",
-        departureStationId: "33",
-        departureStationName: "test departune name",
-        returnStationId: "65",
-        returnStationName: "test return name",
-        coveredDistance: 403,
-        duration: 344,
-      },
-    ];
-
     render(<Table trips={mockTrips} />);
+    expect(await screen.findAllByRole("row")).toHaveLength(3);
     /* renders kilometers correctly */
-    expect(await screen.findByText("1.41")).toBeInTheDocument();
+    expect(await screen.findByText("0.01")).toBeInTheDocument();
     expect(await screen.findByText("0.4")).toBeInTheDocument();
     /* renders minutes correctly */
-    expect(await screen.findByText("11")).toBeInTheDocument();
-    expect(await screen.findByText("6")).toBeInTheDocument();
+    expect(await screen.findByText("00:11")).toBeInTheDocument();
+    expect(await screen.findByText("05:44")).toBeInTheDocument();
+
+    /* convertSecondsToMinutes() works correctly */
+    expect(convertSecondsToMinutes(10)).toBe("00:10");
+    expect(convertSecondsToMinutes(100)).toBe("01:40");
+    expect(convertSecondsToMinutes(1000)).toBe("16:40");
+    expect(convertSecondsToMinutes(10000)).toBe("166:40");
   });
 });
