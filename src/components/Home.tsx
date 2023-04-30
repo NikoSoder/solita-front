@@ -2,6 +2,7 @@ import React from "react";
 import { Dispatch } from "react";
 import { Station } from "../types/IStation";
 import { Trip } from "../types/ITrip";
+import Table from "./Table";
 
 interface ChildPropsHome {
   trips: Trip[];
@@ -13,9 +14,7 @@ interface ChildPropsHome {
 const Home = ({ trips, setTrips, stations, setStations }: ChildPropsHome) => {
   return (
     <div>
-      {trips.map((trip) => (
-        <div key={trip.id}>{trip.departureStationName}</div>
-      ))}
+      <Table trips={trips} />
     </div>
   );
 };
