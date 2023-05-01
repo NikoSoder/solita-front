@@ -19,7 +19,3 @@ table tr:first-child th:first-child {
 table tr:first-child th:last-child {
   border-top-right-radius: 0.5rem;
 }
-
-.main-shadow {
-  box-shadow: 0 11px 21px #d4d8e4;
-}
