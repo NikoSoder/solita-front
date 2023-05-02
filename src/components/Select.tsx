@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Station } from "../types/IStation";
+import { IStation } from "../types/IStation";
 import { Dispatch } from "react";
 
 interface ChildPropsSelect {
-  stations: Station[];
-  selected: Station;
-  setSelected: Dispatch<React.SetStateAction<Station>>;
+  stations: IStation[];
+  selected: IStation;
+  setSelected: Dispatch<React.SetStateAction<IStation>>;
 }
 
 const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {

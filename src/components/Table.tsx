@@ -1,9 +1,9 @@
-import { Trip } from "../types/ITrip";
+import { ITrip } from "../types/ITrip";
 import { convertSecondsToMinutes } from "../utils/secondsToMinutes";
 import { convertMetersToKm } from "../utils/metersToKm";
 
 type ChildPropsTable = {
-  trips: Trip[];
+  trips: ITrip[];
 };
 
 const Table = ({ trips }: ChildPropsTable) => {

@@ -1,4 +1,4 @@
-export interface Station {
+export interface IStation {
   fid: number;
   id: string;
   nimi: string;

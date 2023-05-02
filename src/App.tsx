@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Trip } from "./types/ITrip";
-import { Station } from "./types/IStation";
+import { ITrip } from "./types/ITrip";
+import { IStation } from "./types/IStation";
 import apiService from "./services/api-service";
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
@@ -9,8 +9,8 @@ import Navbar from "./components/Navbar";
 import { Loading } from "./components/Loading";
 
 const App = () => {
-  const [trips, setTrips] = useState<Trip[]>([]);
-  const [stations, setStations] = useState<Station[]>([]);
+  const [trips, setTrips] = useState<ITrip[]>([]);
+  const [stations, setStations] = useState<IStation[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

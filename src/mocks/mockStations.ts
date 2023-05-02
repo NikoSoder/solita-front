@@ -1,6 +1,6 @@
-import { Station } from "../types/IStation";
+import { IStation } from "../types/IStation";
 
-export const mockStations: Station[] = [
+export const mockStations: IStation[] = [
   {
     fid: 1,
     id: "1",

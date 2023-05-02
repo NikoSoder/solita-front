@@ -1,5 +1,5 @@
-import { Trip } from "../types/ITrip";
-export const mockTrips: Trip[] = [
+import { ITrip } from "../types/ITrip";
+export const mockTrips: ITrip[] = [
   {
     id: 1,
     departure: "test 1 departure",
