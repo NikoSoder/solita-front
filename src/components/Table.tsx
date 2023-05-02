@@ -1,5 +1,6 @@
 import { Trip } from "../types/ITrip";
 import { convertSecondsToMinutes } from "../utils/secondsToMinutes";
+import { convertMetersToKm } from "../utils/metersToKm";
 
 type ChildPropsTable = {
   trips: Trip[];
@@ -22,10 +23,10 @@ const Table = ({ trips }: ChildPropsTable) => {
             key={trip.id}
             className="border-b border-slate-200 text-slate-700 dark:border-slate-700 dark:text-slate-400"
           >
-            <td>{trip.departureStationName}</td>
-            <td>{trip.returnStationName}</td>
+            <td>{trip.departure_station_name}</td>
+            <td>{trip.return_station_name}</td>
             {/* change meters to km and then round to 2 decimals */}
-            <td>{Math.round((trip.coveredDistance / 1000) * 100) / 100}</td>
+            <td>{convertMetersToKm(trip.covered_distance)}</td>
             {/* change seconds to minutes */}
             <td>{convertSecondsToMinutes(trip.duration)}</td>
           </tr>

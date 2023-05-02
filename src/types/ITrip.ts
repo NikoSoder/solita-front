@@ -1,11 +1,11 @@
 export interface Trip {
-  id: string;
+  id: number;
   departure: string;
   return: string;
-  departureStationId: string;
-  departureStationName: string;
-  returnStationId: string;
-  returnStationName: string;
-  coveredDistance: number;
+  departure_station_id: string;
+  departure_station_name: string;
+  return_station_id: string;
+  return_station_name: string;
+  covered_distance: string;
   duration: number;
 }
