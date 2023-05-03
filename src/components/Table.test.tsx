@@ -9,7 +9,7 @@ describe("Table", () => {
     expect(await screen.findAllByRole("row")).toHaveLength(3);
     /* renders kilometers correctly */
     expect(await screen.findByText("0.01")).toBeInTheDocument();
-    expect(await screen.findByText("0.4")).toBeInTheDocument();
+    expect(await screen.findByText("0.40")).toBeInTheDocument();
     /* renders minutes correctly */
     expect(await screen.findByText("00:11")).toBeInTheDocument();
     expect(await screen.findByText("05:44")).toBeInTheDocument();
