@@ -16,11 +16,13 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
       <div>
         <h2 className="text-lg tracking-wide dark:text-slate-100">Stations</h2>
       </div>
-      <div>
+      <div className="">
         <Listbox value={selected} onChange={setSelected}>
           <div className="relative mt-1">
             <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 dark:border dark:border-slate-500 dark:bg-gray-900 dark:text-slate-300">
-              <span className="block truncate">{selected.name}</span>
+              <span data-testid="active-station" className="block truncate">
+                {selected.name}
+              </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
                   className="h-5 w-5 text-gray-400"

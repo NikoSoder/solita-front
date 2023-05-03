@@ -37,7 +37,7 @@ const Station = ({ selected }: ChildPropsStation) => {
             <div className="rounded-full bg-green-200 p-1 dark:bg-green-900">
               <CheckIcon className="h-4 w-4 text-green-900 dark:text-green-300" />
             </div>
-            <p>Journeys started</p>
+            <p>Journeys ended</p>
             <p className="text-2xl font-bold text-slate-900 dark:text-slate-200">
               2212
             </p>

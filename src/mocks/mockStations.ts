@@ -28,8 +28,8 @@ export const mockStations: IStation[] = [
     y: "25",
   },
   {
-    fid: 2,
-    id: "2",
+    fid: 3,
+    id: "3",
     nimi: "test station 3",
     namn: "test station 3",
     name: "test station 3",
