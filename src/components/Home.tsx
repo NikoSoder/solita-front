@@ -18,20 +18,22 @@ const Home = ({ trips, setTrips, stations, setStations }: ChildPropsHome) => {
   const [selected, setSelected] = useState(stations[0]);
 
   return (
-    <div className="flex flex-col gap-5 md:flex-row">
-      <div className="overflow-x-auto shadow-xl">
+    <div className="flex flex-col gap-5 lg:flex-row">
+      <div className="flex-1 overflow-x-auto">
         <Table trips={trips} />
       </div>
-      <div className="flex flex-col gap-10">
-        <div>
-          <Select
-            stations={stations}
-            selected={selected}
-            setSelected={setSelected}
-          />
-        </div>
-        <div>
-          <Station selected={selected} />
+      <div className="flex-1">
+        <div className="flex flex-col gap-5 rounded-lg p-6">
+          <div>
+            <Select
+              stations={stations}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </div>
+          <div>
+            <Station selected={selected} />
+          </div>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Station = ({ selected }: ChildPropsStation) => {
       href={`https://www.google.com/maps/search/${selected.name}`}
       target="_blank"
     >
-      <div className="rounded bg-white p-6 text-slate-600 shadow-md transition duration-300 ease-in-out hover:scale-105 dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
+      <div className="rounded border border-transparent bg-white p-6 text-slate-600 shadow-md hover:border-sky-600 dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
         <div className="mb-6 border-b dark:border-slate-700">
           <h2 className="text-2xl text-slate-900 dark:text-slate-200">
             {selected.name}
