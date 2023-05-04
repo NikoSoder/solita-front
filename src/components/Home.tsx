@@ -17,6 +17,24 @@ interface ChildPropsHome {
 
 const Home = ({ trips, setTrips, stations, setStations }: ChildPropsHome) => {
   const [selected, setSelected] = useState(stations[0]);
+  const [page, setPage] = useState(1);
+
+  const goNextPage = () => {
+    setPage(page + 1);
+    console.log(page);
+  };
+  const goPreviousPage = () => {
+    setPage(page - 1);
+    console.log(page);
+  };
+  const goFirstPage = () => {
+    setPage(1);
+    console.log(page);
+  };
+  const goLastPage = () => {
+    setPage(354);
+    console.log(page);
+  };
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
@@ -29,7 +47,13 @@ const Home = ({ trips, setTrips, stations, setStations }: ChildPropsHome) => {
             </h3>
           </div>
           <div className="flex gap-2">
-            <Pagination />
+            <Pagination
+              onNextPage={goNextPage}
+              onPreviousPage={goPreviousPage}
+              onGoFirstPage={goFirstPage}
+              onGoLastPage={goLastPage}
+              page={page}
+            />
           </div>
         </div>
         <Table trips={trips} />

@@ -1,15 +1,33 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
-const Pagination = () => {
+interface ChildPropsPagination {
+  onNextPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onPreviousPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onGoFirstPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onGoLastPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  page: number;
+}
+
+const Pagination = ({
+  onNextPage,
+  onPreviousPage,
+  onGoFirstPage,
+  onGoLastPage,
+  page,
+}: ChildPropsPagination) => {
   return (
     <>
-      <div className="group border border-sky-600 p-1 hover:bg-sky-600 hover:text-white dark:border-sky-600">
+      <button
+        onClick={onGoFirstPage}
+        disabled={page === 1 ? true : false}
+        className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="h-6 w-6 cursor-pointer text-sky-600 group-hover:text-white dark:text-sky-600"
+          className="h-6 w-6 text-sky-600 group-hover:text-white group-disabled:text-slate-300 dark:text-sky-500 dark:group-disabled:text-slate-500"
         >
           <path
             fillRule="evenodd"
@@ -17,22 +35,36 @@ const Pagination = () => {
             clipRule="evenodd"
           />
         </svg>
+      </button>
+      <button
+        onClick={onPreviousPage}
+        disabled={page === 1 ? true : false}
+        className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
+      >
+        <ChevronLeftIcon className="h-6 w-6 text-sky-600 group-hover:text-white group-disabled:text-slate-300 dark:text-sky-500 dark:group-disabled:text-slate-500" />
+      </button>
+      {/* page count */}
+      <div className="w-32 border border-sky-600 px-4 py-1 text-center dark:border-sky-500 dark:text-slate-200">
+        {page} of 354
       </div>
-      <div className="group border border-sky-600 p-1 hover:bg-sky-600 dark:border-sky-600">
-        <ChevronLeftIcon className="h-6 w-6 cursor-pointer text-sky-600 group-hover:text-white dark:text-sky-600" />
-      </div>
-      <div className="border border-sky-600 px-4 py-1 dark:border-sky-600 dark:text-slate-200">
-        1 of 354
-      </div>
-      <div className="group border border-sky-600 p-1 hover:bg-sky-600 dark:border-sky-600">
-        <ChevronRightIcon className="h-6 w-6 cursor-pointer text-sky-600 group-hover:text-white dark:text-sky-600" />
-      </div>
-      <div className="group border border-sky-600 p-1 hover:bg-sky-600 dark:border-sky-600">
+
+      <button
+        onClick={onNextPage}
+        disabled={page === 354 ? true : false}
+        className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
+      >
+        <ChevronRightIcon className="h-6 w-6 text-sky-600 group-hover:text-white group-disabled:text-slate-300 dark:text-sky-500 dark:group-disabled:text-slate-500" />
+      </button>
+      <button
+        onClick={onGoLastPage}
+        disabled={page === 354 ? true : false}
+        className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="h-6 w-6 cursor-pointer text-sky-600 group-hover:text-white dark:text-sky-600"
+          className="h-6 w-6 text-sky-600 group-hover:text-white group-disabled:text-slate-300 dark:text-sky-500 dark:group-disabled:text-slate-500"
         >
           <path
             fillRule="evenodd"
@@ -40,7 +72,7 @@ const Pagination = () => {
             clipRule="evenodd"
           />
         </svg>
-      </div>
+      </button>
     </>
   );
 };
