@@ -6,6 +6,7 @@ import { ITrip } from "../types/ITrip";
 import Table from "./Table";
 import Select from "./Select";
 import Station from "./Station";
+import Pagination from "./Pagination";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -18,22 +19,32 @@ const Home = ({ trips, setTrips, stations, setStations }: ChildPropsHome) => {
   const [selected, setSelected] = useState(stations[0]);
 
   return (
-    <div className="flex flex-col gap-5 lg:flex-row">
-      <div className="flex-1 overflow-x-auto">
+    <div className="flex flex-col gap-4 lg:flex-row">
+      {/* trips view */}
+      <div className="max-w-xl">
+        <div className="flex flex-col items-center justify-between gap-2 bg-white p-4 dark:bg-slate-700 sm:flex-row">
+          <div>
+            <h3 className="text-2xl tracking-wide dark:text-slate-100">
+              Browse journeys
+            </h3>
+          </div>
+          <div className="flex gap-2">
+            <Pagination />
+          </div>
+        </div>
         <Table trips={trips} />
       </div>
-      <div className="flex-1">
-        <div className="flex flex-col gap-5 rounded-lg p-6">
-          <div>
-            <Select
-              stations={stations}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </div>
-          <div>
-            <Station selected={selected} />
-          </div>
+      {/* stations view */}
+      <div className="flex flex-grow flex-col gap-5 rounded-lg p-6">
+        <div>
+          <Select
+            stations={stations}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        </div>
+        <div>
+          <Station selected={selected} />
         </div>
       </div>
     </div>
