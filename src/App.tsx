@@ -35,7 +35,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="h-full bg-slate-50 dark:bg-gray-900">
+    <div className="h-screen bg-slate-50 dark:bg-gray-900">
       <Router>
         <Navbar />
         <div className="container mx-auto p-3 py-10">
