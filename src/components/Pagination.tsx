@@ -19,6 +19,7 @@ const Pagination = ({
   return (
     <>
       <button
+        data-testid="first-button"
         onClick={onGoFirstPage}
         disabled={page === 1 ? true : false}
         className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
@@ -37,6 +38,7 @@ const Pagination = ({
         </svg>
       </button>
       <button
+        data-testid="previous-button"
         onClick={onPreviousPage}
         disabled={page === 1 ? true : false}
         className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
@@ -50,6 +52,7 @@ const Pagination = ({
 
       <button
         onClick={onNextPage}
+        data-testid="next-button"
         disabled={page === 354 ? true : false}
         className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
       >
@@ -57,6 +60,7 @@ const Pagination = ({
       </button>
       <button
         onClick={onGoLastPage}
+        data-testid="last-button"
         disabled={page === 354 ? true : false}
         className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
       >
