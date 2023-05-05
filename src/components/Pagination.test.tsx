@@ -8,11 +8,12 @@ describe("Pagination", () => {
     onPreviousPage: vi.fn(),
     onGoFirstPage: vi.fn(),
     onGoLastPage: vi.fn(),
-    page: 1,
+    page: 0,
+    totalPageCount: 100,
   };
   it("renders the component with the correct page number", () => {
     const { getByText } = render(<Pagination {...props} />);
-    expect(getByText("1 of 354")).toBeInTheDocument();
+    expect(getByText("1 of 101")).toBeInTheDocument();
   });
   it("disables the previous and first page buttons when on the first page", () => {
     const { getByTestId } = render(<Pagination {...props} />);
@@ -23,7 +24,9 @@ describe("Pagination", () => {
   });
 
   it("disables the next and last page buttons when on the last page", () => {
-    const { getByTestId } = render(<Pagination {...props} page={354} />);
+    const { getByTestId } = render(
+      <Pagination {...props} page={props.totalPageCount} />
+    );
     const nextButton = getByTestId("next-button");
     const lastPageButton = getByTestId("last-button");
     expect(nextButton).toBeDisabled();
