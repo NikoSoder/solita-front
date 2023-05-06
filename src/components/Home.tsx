@@ -71,10 +71,10 @@ const Home = ({
             />
           </div>
         </div>
-        <Table trips={trips} page={page} />
+        {loading ? <Loading /> : <Table trips={trips} page={page} />}
       </div>
       {/* stations view */}
-      <div className="flex flex-grow flex-col gap-5 rounded-lg p-6">
+      <div className="flex flex-grow flex-col gap-5 rounded-lg">
         <div>
           <Select
             stations={stations}
