@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ITrip } from "../types/ITrip";
 import { IStation } from "../types/IStation";
 import { IPageResponse } from "../types/ITrip";
 const baseUrl = "http://localhost:3000/api/";
