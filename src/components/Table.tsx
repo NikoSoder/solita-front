@@ -4,21 +4,23 @@ import { convertMetersToKm } from "../utils/metersToKm";
 
 type ChildPropsTable = {
   trips: ITrip[];
+  page: number;
 };
 
-const Table = ({ trips }: ChildPropsTable) => {
+const Table = ({ trips, page }: ChildPropsTable) => {
   return (
     <div className="overflow-x-auto">
-      <table className="table-auto dark:shadow-2xl">
+      <table className="w-full table-auto lg:table-fixed">
         <thead>
           <tr className="bg-slate-100 tracking-wide text-black dark:bg-slate-800 dark:text-slate-100">
             <th className="font-semibold">Departure</th>
             <th className="font-semibold">Return</th>
-            <th className="font-semibold">Distance (km)</th>
-            <th className="font-semibold">Duration (min)</th>
+            <th className="font-semibold">Distance</th>
+            <th className="font-semibold">Duration</th>
           </tr>
         </thead>
-        <tbody>
+        {/* add key to tbody so animations run every time page changes */}
+        <tbody key={page} className="main-animation">
           {trips.map((trip) => (
             <tr
               key={trip.id}
@@ -27,9 +29,9 @@ const Table = ({ trips }: ChildPropsTable) => {
               <td>{trip.departure_station_name}</td>
               <td>{trip.return_station_name}</td>
               {/* change meters to km and then round to 2 decimals */}
-              <td>{convertMetersToKm(trip.covered_distance)}</td>
+              <td>{convertMetersToKm(trip.covered_distance)} km</td>
               {/* change seconds to minutes */}
-              <td>{convertSecondsToMinutes(trip.duration)}</td>
+              <td>{convertSecondsToMinutes(trip.duration)} m</td>
             </tr>
           ))}
         </tbody>

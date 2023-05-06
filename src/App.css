@@ -1,6 +1,14 @@
-table {
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+.main-animation {
+  animation: page-animation 1s forwards;
+}
+
+@keyframes page-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 th {
@@ -9,13 +17,5 @@ th {
 }
 
 td {
-  padding: 0.5rem 1rem;
-}
-
-table tr:first-child th:first-child {
-  border-top-left-radius: 0.5rem;
-}
-
-table tr:first-child th:last-child {
-  border-top-right-radius: 0.5rem;
+  padding: 1rem;
 }
