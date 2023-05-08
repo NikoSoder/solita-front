@@ -11,21 +11,25 @@ const Navbar = () => {
     setTheme(!theme);
   };
   return (
-    <nav className="flex items-center justify-around bg-white p-5 shadow dark:bg-slate-800 dark:text-gray-300">
+    <nav className="flex items-center justify-around bg-white bg-[url('/src/assets/light.png')] bg-center p-2 dark:bg-slate-800 dark:bg-[url('/src/assets/dark.png')] dark:text-gray-300">
       <div>
         <Link to="/">Home</Link>
       </div>
       <div>
         {theme ? (
-          <SunIcon
+          <button
             onClick={toggleTheme}
-            className="main-animation h-6 w-6 cursor-pointer"
-          />
+            className="rounded-full p-1 hover:bg-slate-200"
+          >
+            <SunIcon className="main-animation h-6 w-6" />
+          </button>
         ) : (
-          <MoonIcon
+          <button
             onClick={toggleTheme}
-            className="main-animation h-6 w-6 cursor-pointer"
-          />
+            className="rounded-full p-1 hover:bg-gray-700"
+          >
+            <MoonIcon className="main-animation h-6 w-6" />
+          </button>
         )}
       </div>
     </nav>
