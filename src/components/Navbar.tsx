@@ -11,7 +11,7 @@ const Navbar = () => {
     setTheme(!theme);
   };
   return (
-    <nav className="flex items-center justify-around bg-white bg-[url('/src/assets/light.png')] bg-center p-2 dark:bg-slate-800 dark:bg-[url('/src/assets/dark.png')] dark:text-gray-300">
+    <nav className="flex items-center justify-around bg-center p-2 dark:text-gray-300">
       <div>
         <Link to="/">Home</Link>
       </div>
