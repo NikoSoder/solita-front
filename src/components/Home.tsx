@@ -29,34 +29,11 @@ const Home = ({
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const goNextPage = async () => {
+  const goToPage = async (pageNumber: number) => {
     setLoading(true);
-    const nextPage = page + 1;
-    const pageResponse = await apiService.getPage(nextPage);
-    setPage(nextPage);
+    const pageResponse = await apiService.getPage(pageNumber);
     setTrips(pageResponse.trips);
-    setLoading(false);
-  };
-  const goPreviousPage = async () => {
-    setLoading(true);
-    const previousPage = page - 1;
-    const pageResponse = await apiService.getPage(previousPage);
-    setPage(previousPage);
-    setTrips(pageResponse.trips);
-    setLoading(false);
-  };
-  const goFirstPage = async () => {
-    setLoading(true);
-    const pageResponse = await apiService.getPage(0);
-    setTrips(pageResponse.trips);
-    setPage(0);
-    setLoading(false);
-  };
-  const goLastPage = async () => {
-    setLoading(true);
-    const pageResponse = await apiService.getPage(totalPageCount);
-    setTrips(pageResponse.trips);
-    setPage(totalPageCount);
+    setPage(pageNumber);
     setLoading(false);
   };
 
@@ -72,10 +49,7 @@ const Home = ({
           </div>
           <div className="flex gap-1">
             <Pagination
-              onNextPage={goNextPage}
-              onPreviousPage={goPreviousPage}
-              onGoFirstPage={goFirstPage}
-              onGoLastPage={goLastPage}
+              goToPage={goToPage}
               totalPageCount={totalPageCount}
               page={page}
             />

@@ -2,19 +2,13 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 interface ChildPropsPagination {
-  onNextPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onPreviousPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onGoFirstPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onGoLastPage: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  goToPage: (pageNumber: number) => void;
   page: number;
   totalPageCount: number;
 }
 
 const Pagination = ({
-  onNextPage,
-  onPreviousPage,
-  onGoFirstPage,
-  onGoLastPage,
+  goToPage,
   page,
   totalPageCount,
 }: ChildPropsPagination) => {
@@ -22,7 +16,7 @@ const Pagination = ({
     <>
       <button
         data-testid="first-button"
-        onClick={onGoFirstPage}
+        onClick={() => goToPage(0)}
         disabled={page === 0 ? true : false}
         className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
       >
@@ -41,7 +35,7 @@ const Pagination = ({
       </button>
       <button
         data-testid="previous-button"
-        onClick={onPreviousPage}
+        onClick={() => goToPage(page - 1)}
         disabled={page === 0 ? true : false}
         className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
       >
@@ -55,7 +49,7 @@ const Pagination = ({
       </div>
 
       <button
-        onClick={onNextPage}
+        onClick={() => goToPage(page + 1)}
         data-testid="next-button"
         disabled={page === totalPageCount ? true : false}
         className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
@@ -63,7 +57,7 @@ const Pagination = ({
         <ChevronRightIcon className="h-6 w-6 text-sky-600 group-hover:text-white group-disabled:text-slate-300 dark:text-sky-500 dark:group-disabled:text-slate-500" />
       </button>
       <button
-        onClick={onGoLastPage}
+        onClick={() => goToPage(totalPageCount)}
         data-testid="last-button"
         disabled={page === totalPageCount ? true : false}
         className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"

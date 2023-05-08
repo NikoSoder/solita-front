@@ -4,10 +4,7 @@ import Pagination from "./Pagination";
 
 describe("Pagination", () => {
   const props = {
-    onNextPage: vi.fn(),
-    onPreviousPage: vi.fn(),
-    onGoFirstPage: vi.fn(),
-    onGoLastPage: vi.fn(),
+    goToPage: vi.fn(),
     page: 0,
     totalPageCount: 100,
   };
