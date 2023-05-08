@@ -5,14 +5,14 @@ import { convertSecondsToMinutes } from "../utils/secondsToMinutes";
 
 describe("Table", () => {
   it("renders Table component", async () => {
-    render(<Table trips={mockTrips} />);
+    render(<Table trips={mockTrips} page={1} />);
     expect(await screen.findAllByRole("row")).toHaveLength(3);
     /* renders kilometers correctly */
-    expect(await screen.findByText("0.01")).toBeInTheDocument();
-    expect(await screen.findByText("0.40")).toBeInTheDocument();
+    expect(await screen.findByText("0.01 km")).toBeInTheDocument();
+    expect(await screen.findByText("0.40 km")).toBeInTheDocument();
     /* renders minutes correctly */
-    expect(await screen.findByText("00:11")).toBeInTheDocument();
-    expect(await screen.findByText("05:44")).toBeInTheDocument();
+    expect(await screen.findByText("00:11 m")).toBeInTheDocument();
+    expect(await screen.findByText("05:44 m")).toBeInTheDocument();
 
     /* convertSecondsToMinutes() works correctly */
     expect(convertSecondsToMinutes(10)).toBe("00:10");

@@ -11,12 +11,14 @@ import { Loading } from "./components/Loading";
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
   const [stations, setStations] = useState<IStation[]>([]);
+  const [totalPageCount, setTotalPageCount] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const tripsResponse = await apiService.getTrips();
-        setTrips(tripsResponse);
+        setTrips(tripsResponse.trips);
+        setTotalPageCount(tripsResponse.totalPageCount);
       } catch (error) {
         console.log(error);
         alert("Something went wrong");
@@ -35,30 +37,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className="h-full bg-slate-50 dark:bg-gray-900">
-      <Router>
-        <Navbar />
-        <div className="container mx-auto p-3 py-10">
-          {!trips.length || !stations.length ? (
-            <Loading />
-          ) : (
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    trips={trips}
-                    setTrips={setTrips}
-                    stations={stations}
-                    setStations={setStations}
-                  />
-                }
-              />
-            </Routes>
-          )}
-        </div>
-      </Router>
-    </div>
+    <Router>
+      <Navbar />
+      <div className="container mx-auto p-3 py-10">
+        {!trips.length || !stations.length ? (
+          <Loading />
+        ) : (
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  trips={trips}
+                  setTrips={setTrips}
+                  stations={stations}
+                  setStations={setStations}
+                  totalPageCount={totalPageCount}
+                />
+              }
+            />
+          </Routes>
+        )}
+      </div>
+    </Router>
   );
 };
 

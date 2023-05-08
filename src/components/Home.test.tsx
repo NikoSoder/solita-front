@@ -14,6 +14,7 @@ describe("Home", () => {
         setTrips={setTrips}
         stations={mockStations}
         setStations={setStations}
+        totalPageCount={1}
       />
     );
     expect(screen.getByRole("table")).toBeInTheDocument();

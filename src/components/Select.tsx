@@ -14,7 +14,7 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
   return (
     <div>
       <div>
-        <h2 className="text-lg tracking-wide dark:text-slate-100">Stations</h2>
+        <h2 className="text-xl tracking-wide dark:text-slate-100">Stations</h2>
       </div>
       <div className="">
         <Listbox value={selected} onChange={setSelected}>
@@ -36,7 +36,7 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border dark:border-slate-500 dark:bg-gray-900">
+              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border dark:border-slate-500 dark:bg-gray-900">
                 {stations.map((station) => (
                   <Listbox.Option
                     key={station.id}

@@ -1,3 +1,8 @@
+export interface IPageResponse {
+  trips: ITrip[];
+  totalPageCount: number;
+}
+
 export interface ITrip {
   id: number;
   departure: string;
