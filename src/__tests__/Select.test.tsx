@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { mockStations } from "../mocks/mockStations";
 import { vi } from "vitest";
-import Select from "./Select";
+import Select from "../components/Select";
 import userEvent from "@testing-library/user-event";
 
 describe("Select", () => {

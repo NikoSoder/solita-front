@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { mockTrips } from "../mocks/mockTrips";
 import { mockStations } from "../mocks/mockStations";
 import { vi } from "vitest";
-import Home from "./Home";
+import Home from "../components/Home";
 
 describe("Home", () => {
   it("renders Home component", () => {

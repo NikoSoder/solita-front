@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { vi } from "vitest";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 
 describe("Pagination", () => {
   const props = {
