@@ -17,15 +17,9 @@ const App = () => {
     const fetchData = async () => {
       try {
         const tripsResponse = await apiService.getTrips();
+        const stationsResponse = await apiService.getStations();
         setTrips(tripsResponse.trips);
         setTotalPageCount(tripsResponse.totalPageCount);
-      } catch (error) {
-        console.log(error);
-        alert("Something went wrong");
-      }
-
-      try {
-        const stationsResponse = await apiService.getStations();
         setStations(stationsResponse);
       } catch (error) {
         console.log(error);
