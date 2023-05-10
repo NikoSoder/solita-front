@@ -1,5 +1,8 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+/* import { ChevronDoubleRightIcon } from "@heroicons/react/24/solid";
+import { ChevronDoubleLeftIcon } from "@heroicons/react/24/solid"; */
+// TODO: replace svgs to these icons
 
 interface ChildPropsPagination {
   goToPage: (pageNumber: number) => void;
