@@ -1,11 +1,13 @@
-import { IStation } from "../types/IStation";
+import { IStation, IStationStats } from "../types/IStation";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { CheckIcon } from "@heroicons/react/24/solid";
+
 type ChildPropsStation = {
   selected: IStation;
+  stationStats: IStationStats;
 };
 
-const Station = ({ selected }: ChildPropsStation) => {
+const Station = ({ selected, stationStats }: ChildPropsStation) => {
   return (
     <a
       href={`https://www.google.com/maps/search/${selected.name}`}
@@ -33,7 +35,7 @@ const Station = ({ selected }: ChildPropsStation) => {
             </div>
             <p>Journeys started</p>
             <p className="text-2xl font-bold text-slate-900 dark:text-slate-200">
-              32332
+              {stationStats.departureCount}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -42,7 +44,7 @@ const Station = ({ selected }: ChildPropsStation) => {
             </div>
             <p>Journeys ended</p>
             <p className="text-2xl font-bold text-slate-900 dark:text-slate-200">
-              2212
+              {stationStats.returnCount}
             </p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Dispatch } from "react";
-import { IStation } from "../types/IStation";
+import { IStation, IStationStats } from "../types/IStation";
 import { ITrip } from "../types/ITrip";
 import Table from "./Table";
 import Select from "./Select";
@@ -9,6 +9,7 @@ import Station from "./Station";
 import Pagination from "./Pagination";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
+import { useEffect } from "react";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -28,6 +29,21 @@ const Home = ({
   const [selected, setSelected] = useState(stations[0]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [stationStats, setStationStats] = useState<IStationStats>({
+    departureCount: 0,
+    returnCount: 0,
+  });
+
+  useEffect(() => {
+    const getStats = async () => {
+      const response = await apiService.getStats(selected.id);
+      setStationStats({
+        departureCount: response.departureCount,
+        returnCount: response.returnCount,
+      });
+    };
+    getStats();
+  }, [selected]);
 
   const goToPage = async (pageNumber: number) => {
     setLoading(true);
@@ -67,7 +83,7 @@ const Home = ({
           />
         </div>
         <div>
-          <Station selected={selected} />
+          <Station selected={selected} stationStats={stationStats} />
         </div>
       </div>
     </div>

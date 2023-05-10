@@ -20,6 +20,7 @@ const App = () => {
         const stationsResponse = await apiService.getStations();
         setTrips(tripsResponse.trips);
         setTotalPageCount(tripsResponse.totalPageCount);
+        stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
         setStations(stationsResponse);
       } catch (error) {
         console.log(error);

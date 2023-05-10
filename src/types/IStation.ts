@@ -11,3 +11,8 @@ export interface IStation {
   x: string;
   y: string;
 }
+
+export interface IStationStats {
+  departureCount: number;
+  returnCount: number;
+}
