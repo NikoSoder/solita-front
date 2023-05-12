@@ -30,6 +30,17 @@ describe("Pagination", () => {
     expect(lastPageButton).toBeDisabled();
   });
 
+  /* it("page count should go up", async () => {
+    const user = userEvent.setup();
+    render(<Pagination {...props} />);
+    const nextButton = screen.getByTestId("next-button");
+    expect(screen.getByText("1 of 101")).toBeInTheDocument();
+
+    await user.click(nextButton);
+    expect(await screen.findByText("2 of 101")).toBeInTheDocument();
+    screen.debug();
+  }); */
+
   /* TODO: when pressing next page button text should change from "1 of 354" to "2 of 354" */
   /* same for previous page button */
 });

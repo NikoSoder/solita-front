@@ -21,6 +21,7 @@ const Navbar = () => {
       <div>
         {theme ? (
           <button
+            data-testid="sunIcon"
             onClick={toggleTheme}
             className="rounded-full p-1 hover:bg-slate-200"
           >
@@ -28,6 +29,7 @@ const Navbar = () => {
           </button>
         ) : (
           <button
+            data-testid="moonIcon"
             onClick={toggleTheme}
             className="rounded-full p-1 hover:bg-gray-700"
           >
