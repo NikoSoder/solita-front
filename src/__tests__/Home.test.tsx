@@ -7,13 +7,12 @@ import Home from "../components/Home";
 describe("Home", () => {
   it("renders Home component", async () => {
     const setTrips = vi.fn();
-    const setStations = vi.fn();
+
     render(
       <Home
         trips={mockTrips}
         setTrips={setTrips}
         stations={mockStations}
-        setStations={setStations}
         totalPageCount={1}
       />
     );

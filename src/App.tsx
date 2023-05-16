@@ -40,13 +40,12 @@ const App = () => {
         ) : (
           <Routes>
             <Route
-              path="/"
+              path="/solita-front"
               element={
                 <Home
                   trips={trips}
                   setTrips={setTrips}
                   stations={stations}
-                  setStations={setStations}
                   totalPageCount={totalPageCount}
                 />
               }

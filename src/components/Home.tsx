@@ -16,7 +16,6 @@ interface ChildPropsHome {
   trips: ITrip[];
   setTrips: Dispatch<React.SetStateAction<ITrip[]>>;
   stations: IStation[];
-  setStations: Dispatch<React.SetStateAction<IStation[]>>;
   totalPageCount: number;
 }
 
@@ -24,7 +23,6 @@ const Home = ({
   trips,
   setTrips,
   stations,
-  setStations,
   totalPageCount,
 }: ChildPropsHome) => {
   const [selected, setSelected] = useState(stations[0]);
