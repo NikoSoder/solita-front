@@ -10,6 +10,7 @@ import Pagination from "./Pagination";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
+import SkeletonLoading from "./SkeletonLoading";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -29,6 +30,7 @@ const Home = ({
   const [selected, setSelected] = useState(stations[0]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [skeletonLoading, setSkeletonLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
     departureCount: 0,
     returnCount: 0,
@@ -36,11 +38,13 @@ const Home = ({
 
   useEffect(() => {
     const getStats = async () => {
+      setSkeletonLoading(true);
       const response = await apiService.getStats(selected.id);
       setStationStats({
         departureCount: response.departureCount,
         returnCount: response.returnCount,
       });
+      setSkeletonLoading(false);
     };
     getStats();
   }, [selected]);
@@ -82,9 +86,11 @@ const Home = ({
             setSelected={setSelected}
           />
         </div>
-        <div>
+        {skeletonLoading ? (
+          <SkeletonLoading />
+        ) : (
           <Station selected={selected} stationStats={stationStats} />
-        </div>
+        )}
       </div>
     </div>
   );

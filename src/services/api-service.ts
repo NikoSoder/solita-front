@@ -1,8 +1,8 @@
 import axios from "axios";
 import { IStation, IStationStats } from "../types/IStation";
 import { IPageResponse } from "../types/ITrip";
-const baseUrl = "http://localhost:3000/api/";
-
+/* const baseUrl = "http://localhost:3000/api/"; */
+const baseUrl = "https://solita-back-production.up.railway.app/api/";
 const getTrips = async (): Promise<IPageResponse> => {
   const response = await axios.get(baseUrl + "trips");
   return response.data;
