@@ -59,7 +59,10 @@ const Home = ({
     <div className="flex flex-col gap-4 lg:flex-row">
       {/* trips view */}
       <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
-        <div className="flex flex-col gap-2 rounded-t-lg bg-white p-4 dark:bg-slate-700 sm:items-center">
+        <div
+          className="flex flex-col gap-2 rounded-t-lg bg-white p-4 dark:bg-slate-700 
+        sm:items-center"
+        >
           <div>
             <h3 className="text-xl tracking-wide dark:text-slate-100">
               Browse journeys

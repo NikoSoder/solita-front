@@ -11,10 +11,16 @@ const Navbar = () => {
     setTheme(!theme);
   };
   return (
-    <nav className="relative flex items-center justify-between bg-center px-2 py-2 dark:text-gray-300 sm:px-10">
+    <nav
+      className="relative flex items-center justify-between bg-center px-2 py-2
+    dark:text-gray-300 sm:px-10"
+    >
       <GlobeAltIcon className="absolute left-3 top-0 h-8 w-8 text-sky-700" />
       <div>
-        <h1 className="logo-font ms-8 bg-gradient-to-r from-sky-700 to-teal-800 bg-clip-text text-xl tracking-wider text-transparent dark:to-teal-600 sm:ms-0 sm:text-2xl">
+        <h1
+          className="logo-font ms-8 bg-gradient-to-r from-sky-700 to-teal-800 bg-clip-text 
+        text-xl tracking-wider text-transparent dark:to-teal-600 sm:ms-0 sm:text-2xl"
+        >
           City Bike Helsinki
         </h1>
       </div>
