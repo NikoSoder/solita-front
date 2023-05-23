@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import sitePicture from "../assets/site.png";
 const LandingPage = () => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="container mx-auto flex flex-col gap-10 p-3 py-10">
       <div className="text-center">
         <h1 className="mb-1 text-5xl font-bold tracking-wide text-blue-900">
           Helsinki city bike app
@@ -12,13 +12,13 @@ const LandingPage = () => {
         </p>
       </div>
       <div className="flex justify-center">
-        <div className="max-w-4xl border-l-2 border-l-slate-200 text-center leading-loose">
+        <div className="max-w-4xl border-l-2 border-l-slate-200 pl-2 text-center leading-loose">
           <p className="text-slate-700">
             <b className="tracking-wider">I am delighted</b> to have received an
             exciting project offer from Solita Dev Academy to develop a user
             interface and backend service for a city bike app focused on
             displaying data from journeys in the Helsinki Capital area. This
-            opportunity provided by Solita Dev Academy allows me to showcase my
+            opportunity provided by Solita Dev Academy allowed me to showcase my
             skills and creativity.
           </p>
         </div>
