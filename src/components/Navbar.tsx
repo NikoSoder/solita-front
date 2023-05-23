@@ -1,12 +1,17 @@
 import { SunIcon } from "@heroicons/react/24/solid";
 import { MoonIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(true);
-  //
+  useEffect(() => {
+    document.documentElement.classList.contains("dark")
+      ? setTheme(false)
+      : setTheme(true);
+  }, []);
+
   const toggleTheme = () => {
     document.documentElement.classList.toggle("dark");
     setTheme(!theme);
