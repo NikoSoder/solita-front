@@ -11,6 +11,7 @@ import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
+import Navbar from "./Navbar";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -56,42 +57,48 @@ const Home = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 lg:flex-row">
-      {/* trips view */}
-      <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
-        <div
-          className="flex flex-col gap-2 rounded-t-lg bg-white p-4 dark:bg-slate-700 
-        sm:items-center"
-        >
-          <div>
-            <h3 className="text-xl tracking-wide dark:text-slate-100">
-              Browse journeys
-            </h3>
+    <div
+      className="min-h-screen bg-[url('/src/assets/light.png')] dark:bg-gray-900
+    dark:bg-[url('/src/assets/dark.png')]"
+    >
+      <Navbar />
+      <div className="container mx-auto flex flex-col gap-4 p-3 py-10 lg:flex-row">
+        {/* trips view */}
+        <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
+          <div
+            className="flex flex-col gap-2 rounded-t-lg bg-white p-4 dark:bg-slate-700
+          sm:items-center"
+          >
+            <div>
+              <h3 className="text-xl tracking-wide dark:text-slate-100">
+                Browse journeys
+              </h3>
+            </div>
+            <div className="flex gap-1">
+              <Pagination
+                goToPage={goToPage}
+                totalPageCount={totalPageCount}
+                page={page}
+              />
+            </div>
           </div>
-          <div className="flex gap-1">
-            <Pagination
-              goToPage={goToPage}
-              totalPageCount={totalPageCount}
-              page={page}
+          {loading ? <Loading /> : <Table trips={trips} page={page} />}
+        </div>
+        {/* stations view */}
+        <div className="flex flex-grow flex-col gap-5 rounded-lg">
+          <div>
+            <Select
+              stations={stations}
+              selected={selected}
+              setSelected={setSelected}
             />
           </div>
+          {skeletonLoading ? (
+            <SkeletonLoading />
+          ) : (
+            <Station selected={selected} stationStats={stationStats} />
+          )}
         </div>
-        {loading ? <Loading /> : <Table trips={trips} page={page} />}
-      </div>
-      {/* stations view */}
-      <div className="flex flex-grow flex-col gap-5 rounded-lg">
-        <div>
-          <Select
-            stations={stations}
-            selected={selected}
-            setSelected={setSelected}
-          />
-        </div>
-        {skeletonLoading ? (
-          <SkeletonLoading />
-        ) : (
-          <Station selected={selected} stationStats={stationStats} />
-        )}
       </div>
     </div>
   );

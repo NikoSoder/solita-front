@@ -2,6 +2,7 @@ import { SunIcon } from "@heroicons/react/24/solid";
 import { MoonIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(true);
@@ -12,18 +13,20 @@ const Navbar = () => {
   };
   return (
     <nav
-      className="relative flex items-center justify-between bg-center px-2 py-2
+      className="flex items-center justify-between bg-center px-2 py-2
     dark:text-gray-300 sm:px-10"
     >
-      <GlobeAltIcon className="absolute left-3 top-0 h-8 w-8 text-sky-700" />
-      <div>
-        <h1
-          className="logo-font ms-8 bg-gradient-to-r from-sky-700 to-teal-800 bg-clip-text 
-        text-xl tracking-wider text-transparent dark:to-teal-600 sm:ms-0 sm:text-2xl"
+      <div className="flex">
+        <GlobeAltIcon className="h-8 w-8 text-sky-700" />
+        <Link
+          to="/solita-front"
+          className="bg-gradient-to-r from-sky-700 to-teal-800 bg-clip-text
+          text-2xl tracking-wide text-transparent dark:to-teal-600"
         >
           City Bike Helsinki
-        </h1>
+        </Link>
       </div>
+
       <div>
         {theme ? (
           <button
