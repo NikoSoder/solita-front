@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
 import { Loading } from "./components/Loading";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
@@ -40,16 +41,19 @@ const App = () => {
         <Routes>
           <Route path="/solita-front" element={<LandingPage />} />
           <Route
-            path="/home"
+            path="/solita-front/home"
             element={
-              <Home
-                trips={trips}
-                setTrips={setTrips}
-                stations={stations}
-                page={page}
-                setPage={setPage}
-                totalPageCount={totalPageCount}
-              />
+              <div className="bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
+                <Navbar />
+                <Home
+                  trips={trips}
+                  setTrips={setTrips}
+                  stations={stations}
+                  page={page}
+                  setPage={setPage}
+                  totalPageCount={totalPageCount}
+                />
+              </div>
             }
           />
         </Routes>

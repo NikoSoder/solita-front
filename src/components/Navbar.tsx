@@ -18,8 +18,8 @@ const Navbar = () => {
   };
   return (
     <nav
-      className="flex items-center justify-between bg-center px-2 py-2
-    dark:text-gray-300 sm:px-10"
+      className="flex items-center justify-between px-2 py-2 dark:text-gray-300 
+      sm:px-10"
     >
       <div className="flex">
         <GlobeAltIcon className="h-8 w-8 text-sky-700" />

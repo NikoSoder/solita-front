@@ -11,7 +11,6 @@ import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
-import Navbar from "./Navbar";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -60,11 +59,7 @@ const Home = ({
   };
 
   return (
-    <div
-      className="min-h-screen bg-[url('/src/assets/light.png')] dark:bg-gray-900
-    dark:bg-[url('/src/assets/dark.png')]"
-    >
-      <Navbar />
+    <div className="min-h-screen">
       <div className="container mx-auto flex flex-col gap-4 p-3 py-10 lg:flex-row">
         {/* trips view */}
         <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
