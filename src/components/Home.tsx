@@ -19,6 +19,8 @@ interface ChildPropsHome {
   page: number;
   setPage: Dispatch<React.SetStateAction<number>>;
   totalPageCount: number;
+  selected: IStation;
+  setSelected: Dispatch<React.SetStateAction<IStation | null>>;
 }
 
 const Home = ({
@@ -28,8 +30,9 @@ const Home = ({
   page,
   setPage,
   totalPageCount,
+  selected,
+  setSelected,
 }: ChildPropsHome) => {
-  const [selected, setSelected] = useState(stations[0]);
   const [loading, setLoading] = useState(false);
   const [skeletonLoading, setSkeletonLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({

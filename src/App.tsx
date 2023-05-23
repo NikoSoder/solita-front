@@ -14,6 +14,7 @@ const App = () => {
   const [stations, setStations] = useState<IStation[]>([]);
   const [page, setPage] = useState(0);
   const [totalPageCount, setTotalPageCount] = useState(1);
+  const [selected, setSelected] = useState<IStation | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +24,7 @@ const App = () => {
         setTrips(tripsResponse.trips);
         setTotalPageCount(tripsResponse.totalPageCount);
         stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
+        setSelected(stationsResponse[0]);
         setStations(stationsResponse);
       } catch (error) {
         console.log(error);
@@ -35,7 +37,7 @@ const App = () => {
 
   return (
     <Router>
-      {!trips.length || !stations.length ? (
+      {!trips.length || !stations.length || !selected ? (
         <Loading />
       ) : (
         <Routes>
@@ -52,6 +54,8 @@ const App = () => {
                   page={page}
                   setPage={setPage}
                   totalPageCount={totalPageCount}
+                  selected={selected}
+                  setSelected={setSelected}
                 />
               </div>
             }
