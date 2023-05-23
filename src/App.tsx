@@ -5,12 +5,13 @@ import { IStation } from "./types/IStation";
 import apiService from "./services/api-service";
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
-import Navbar from "./components/Navbar";
+import LandingPage from "./components/LandingPage";
 import { Loading } from "./components/Loading";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
   const [stations, setStations] = useState<IStation[]>([]);
+  const [page, setPage] = useState(0);
   const [totalPageCount, setTotalPageCount] = useState(1);
 
   useEffect(() => {
@@ -33,26 +34,26 @@ const App = () => {
 
   return (
     <Router>
-      <Navbar />
-      <div className="container mx-auto p-3 py-10">
-        {!trips.length || !stations.length ? (
-          <Loading />
-        ) : (
-          <Routes>
-            <Route
-              path="/solita-front"
-              element={
-                <Home
-                  trips={trips}
-                  setTrips={setTrips}
-                  stations={stations}
-                  totalPageCount={totalPageCount}
-                />
-              }
-            />
-          </Routes>
-        )}
-      </div>
+      {!trips.length || !stations.length ? (
+        <Loading />
+      ) : (
+        <Routes>
+          <Route path="/solita-front" element={<LandingPage />} />
+          <Route
+            path="/home"
+            element={
+              <Home
+                trips={trips}
+                setTrips={setTrips}
+                stations={stations}
+                page={page}
+                setPage={setPage}
+                totalPageCount={totalPageCount}
+              />
+            }
+          />
+        </Routes>
+      )}
     </Router>
   );
 };
