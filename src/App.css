@@ -11,6 +11,20 @@
   }
 }
 
+.landing-animation {
+  animation: landing-page-animation 800ms forwards;
+}
+
+@keyframes landing-page-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 th {
   padding: 1rem;
   text-align: left;

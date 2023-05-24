@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import "./App.css";
 import { ITrip } from "./types/ITrip";
 import { IStation } from "./types/IStation";
@@ -36,14 +36,14 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <HashRouter>
       {!trips.length || !stations.length || !selected ? (
         <Loading />
       ) : (
         <Routes>
-          <Route path="/solita-front" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route
-            path="/solita-front/home"
+            path="/home"
             element={
               <div className="bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
                 <Navbar />
@@ -62,7 +62,7 @@ const App = () => {
           />
         </Routes>
       )}
-    </Router>
+    </HashRouter>
   );
 };
 

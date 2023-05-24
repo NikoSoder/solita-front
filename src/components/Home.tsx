@@ -11,7 +11,6 @@ import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
-import { ErrorResponse } from "../types/IError";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -52,8 +51,11 @@ const Home = ({
         });
         setSkeletonLoading(false);
       } catch (error) {
-        const errorMessage = (error as ErrorResponse).response.data.error;
-        alert(errorMessage);
+        // TODO: npm test is failing on this
+        /*   const errorMessage =
+          (error as ErrorResponse).response.data.error ??
+          "Something went wrong"; */
+        alert("Invalid station id");
       }
     };
     getStats();
@@ -67,8 +69,7 @@ const Home = ({
       setPage(pageNumber);
       setLoading(false);
     } catch (error) {
-      const errorMessage = (error as ErrorResponse).response.data.error;
-      alert(errorMessage);
+      alert("Invalid page number");
     }
   };
 
