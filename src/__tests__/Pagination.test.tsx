@@ -38,7 +38,7 @@ describe("Pagination", () => {
 
     await user.click(nextButton);
     expect(await screen.findByText("2 of 101")).toBeInTheDocument();
-    screen.debug();
+    
   }); */
 
   /* TODO: when pressing next page button text should change from "1 of 354" to "2 of 354" */

@@ -11,22 +11,29 @@ import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
+import { ErrorResponse } from "../types/IError";
 
 interface ChildPropsHome {
   trips: ITrip[];
   setTrips: Dispatch<React.SetStateAction<ITrip[]>>;
   stations: IStation[];
+  page: number;
+  setPage: Dispatch<React.SetStateAction<number>>;
   totalPageCount: number;
+  selected: IStation;
+  setSelected: Dispatch<React.SetStateAction<IStation | null>>;
 }
 
 const Home = ({
   trips,
   setTrips,
   stations,
+  page,
+  setPage,
   totalPageCount,
+  selected,
+  setSelected,
 }: ChildPropsHome) => {
-  const [selected, setSelected] = useState(stations[0]);
-  const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [skeletonLoading, setSkeletonLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
@@ -36,59 +43,74 @@ const Home = ({
 
   useEffect(() => {
     const getStats = async () => {
-      setSkeletonLoading(true);
-      const response = await apiService.getStats(selected.id);
-      setStationStats({
-        departureCount: response.departureCount,
-        returnCount: response.returnCount,
-      });
-      setSkeletonLoading(false);
+      try {
+        setSkeletonLoading(true);
+        const response = await apiService.getStats(selected.id);
+        setStationStats({
+          departureCount: response.departureCount,
+          returnCount: response.returnCount,
+        });
+        setSkeletonLoading(false);
+      } catch (error) {
+        const errorMessage = (error as ErrorResponse).response.data.error;
+        alert(errorMessage);
+      }
     };
     getStats();
   }, [selected]);
 
   const goToPage = async (pageNumber: number) => {
-    setLoading(true);
-    const pageResponse = await apiService.getPage(pageNumber);
-    setTrips(pageResponse.trips);
-    setPage(pageNumber);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const pageResponse = await apiService.getPage(pageNumber);
+      setTrips(pageResponse.trips);
+      setPage(pageNumber);
+      setLoading(false);
+    } catch (error) {
+      const errorMessage = (error as ErrorResponse).response.data.error;
+      alert(errorMessage);
+    }
   };
 
   return (
-    <div className="flex flex-col gap-4 lg:flex-row">
-      {/* trips view */}
-      <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
-        <div className="flex flex-col gap-2 rounded-t-lg bg-white p-4 dark:bg-slate-700 sm:items-center">
-          <div>
-            <h3 className="text-xl tracking-wide dark:text-slate-100">
-              Browse journeys
-            </h3>
+    <div className="min-h-screen">
+      <div className="container mx-auto flex flex-col gap-4 p-3 py-10 lg:flex-row">
+        {/* trips view */}
+        <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
+          <div
+            className="flex flex-col gap-2 rounded-t-lg bg-white p-4
+                dark:bg-slate-700 sm:items-center"
+          >
+            <div>
+              <h3 className="text-xl tracking-wide dark:text-slate-100">
+                Browse journeys
+              </h3>
+            </div>
+            <div className="flex gap-1">
+              <Pagination
+                goToPage={goToPage}
+                totalPageCount={totalPageCount}
+                page={page}
+              />
+            </div>
           </div>
-          <div className="flex gap-1">
-            <Pagination
-              goToPage={goToPage}
-              totalPageCount={totalPageCount}
-              page={page}
+          {loading ? <Loading /> : <Table trips={trips} page={page} />}
+        </div>
+        {/* stations view */}
+        <div className="flex flex-grow flex-col gap-5 rounded-lg">
+          <div>
+            <Select
+              stations={stations}
+              selected={selected}
+              setSelected={setSelected}
             />
           </div>
+          {skeletonLoading ? (
+            <SkeletonLoading />
+          ) : (
+            <Station selected={selected} stationStats={stationStats} />
+          )}
         </div>
-        {loading ? <Loading /> : <Table trips={trips} page={page} />}
-      </div>
-      {/* stations view */}
-      <div className="flex flex-grow flex-col gap-5 rounded-lg">
-        <div>
-          <Select
-            stations={stations}
-            selected={selected}
-            setSelected={setSelected}
-          />
-        </div>
-        {skeletonLoading ? (
-          <SkeletonLoading />
-        ) : (
-          <Station selected={selected} stationStats={stationStats} />
-        )}
       </div>
     </div>
   );
