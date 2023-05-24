@@ -14,7 +14,7 @@ const LandingPage = () => {
       <div className="flex justify-center">
         <div className="max-w-4xl border-l-2 border-l-slate-200 pl-2 text-center leading-loose">
           <p className="text-slate-700">
-            <b className="tracking-wider">I am delighted</b> to have received an
+            <b className="tracking-wider">I am happy</b> to have received an
             exciting project offer from Solita Dev Academy to develop a user
             interface and backend service for a city bike app focused on
             displaying data from journeys in the Helsinki Capital area. This

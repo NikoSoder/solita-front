@@ -23,11 +23,6 @@ const getStats = async (id: string): Promise<IStationStats> => {
   return response.data;
 };
 
-const getStation = async (id: string): Promise<IStation> => {
-  const response = await axios.get(`${baseUrl}stations/${id}`);
-  return response.data;
-};
-
 const getPage = async (page: number): Promise<IPageResponse> => {
   const response = await axios.get(`${baseUrl}trips/${page}`);
   return response.data;
@@ -37,7 +32,6 @@ export default {
   getTrips,
   getStations,
   getTrip,
-  getStation,
   getPage,
   getStats,
 };

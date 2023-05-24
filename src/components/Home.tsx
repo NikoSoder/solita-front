@@ -11,6 +11,7 @@ import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
+import { ErrorResponse } from "../types/IError";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -42,23 +43,33 @@ const Home = ({
 
   useEffect(() => {
     const getStats = async () => {
-      setSkeletonLoading(true);
-      const response = await apiService.getStats(selected.id);
-      setStationStats({
-        departureCount: response.departureCount,
-        returnCount: response.returnCount,
-      });
-      setSkeletonLoading(false);
+      try {
+        setSkeletonLoading(true);
+        const response = await apiService.getStats(selected.id);
+        setStationStats({
+          departureCount: response.departureCount,
+          returnCount: response.returnCount,
+        });
+        setSkeletonLoading(false);
+      } catch (error) {
+        const errorMessage = (error as ErrorResponse).response.data.error;
+        alert(errorMessage);
+      }
     };
     getStats();
   }, [selected]);
 
   const goToPage = async (pageNumber: number) => {
-    setLoading(true);
-    const pageResponse = await apiService.getPage(pageNumber);
-    setTrips(pageResponse.trips);
-    setPage(pageNumber);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const pageResponse = await apiService.getPage(pageNumber);
+      setTrips(pageResponse.trips);
+      setPage(pageNumber);
+      setLoading(false);
+    } catch (error) {
+      const errorMessage = (error as ErrorResponse).response.data.error;
+      alert(errorMessage);
+    }
   };
 
   return (
