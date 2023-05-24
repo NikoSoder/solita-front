@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className="flex">
         <GlobeAltIcon className="h-8 w-8 text-sky-700" />
         <Link
-          to="/solita-front"
+          to="/"
           className="bg-gradient-to-r from-sky-700 to-teal-800 bg-clip-text
           text-2xl tracking-wide text-transparent dark:to-teal-600"
         >
