@@ -4,10 +4,6 @@ import { IPageResponse } from "../types/ITrip";
 import { IFacts } from "../types/IFacts";
 
 const baseUrl = import.meta.env.VITE_API_URL;
-const getTrips = async (): Promise<IPageResponse> => {
-  const response = await axios.get(baseUrl + "trips");
-  return response.data;
-};
 
 const getStations = async (): Promise<IStation[]> => {
   const response = await axios.get(baseUrl + "stations");
@@ -35,7 +31,6 @@ const getInterestingFacts = async (): Promise<IFacts> => {
 };
 
 export default {
-  getTrips,
   getStations,
   getTrip,
   getPage,

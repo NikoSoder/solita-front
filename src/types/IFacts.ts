@@ -3,7 +3,7 @@ export interface IFacts {
 }
 
 export interface IMostPopularStation {
-  station_id: "string";
-  station_name: "string";
-  num_journeys: "string";
+  station_id: string;
+  station_name: string;
+  num_journeys: string;
 }

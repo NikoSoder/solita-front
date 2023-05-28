@@ -11,6 +11,8 @@ import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
+import { IMostPopularStation } from "../types/IFacts";
+import PopularStations from "./PopularStations";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -21,6 +23,7 @@ interface ChildPropsHome {
   totalPageCount: number;
   selected: IStation;
   setSelected: Dispatch<React.SetStateAction<IStation | null>>;
+  mostPopularStations: IMostPopularStation[];
 }
 
 const Home = ({
@@ -32,6 +35,7 @@ const Home = ({
   totalPageCount,
   selected,
   setSelected,
+  mostPopularStations,
 }: ChildPropsHome) => {
   const [loading, setLoading] = useState(false);
   const [skeletonLoading, setSkeletonLoading] = useState(false);
@@ -111,6 +115,7 @@ const Home = ({
           ) : (
             <Station selected={selected} stationStats={stationStats} />
           )}
+          <PopularStations mostPopularStations={mostPopularStations} />
         </div>
       </div>
     </div>

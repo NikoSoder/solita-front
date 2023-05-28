@@ -63,6 +63,7 @@ const App = () => {
                   totalPageCount={totalPageCount}
                   selected={selected}
                   setSelected={setSelected}
+                  mostPopularStations={mostPopularStations}
                 />
               </div>
             }
