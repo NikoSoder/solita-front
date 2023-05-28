@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
 import { Loading } from "./components/Loading";
 import Navbar from "./components/Navbar";
+import { IMostPopularStation } from "./types/IFacts";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
@@ -15,17 +16,23 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [totalPageCount, setTotalPageCount] = useState(1);
   const [selected, setSelected] = useState<IStation | null>(null);
+  const [mostPopularStations, setMostPopularStations] = useState<
+    IMostPopularStation[]
+  >([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tripsResponse = await apiService.getTrips();
+        const tripsResponse = await apiService.getPage(page);
         const stationsResponse = await apiService.getStations();
+        const mostPopularStationsResponse =
+          await apiService.getInterestingFacts();
         setTrips(tripsResponse.trips);
         setTotalPageCount(tripsResponse.totalPageCount);
         stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
         setSelected(stationsResponse[0]);
         setStations(stationsResponse);
+        setMostPopularStations(mostPopularStationsResponse.busiestStations);
       } catch (error) {
         console.log(error);
         alert("Something went wrong");
