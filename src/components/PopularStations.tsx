@@ -1,4 +1,5 @@
 import { IMostPopularStation } from "../types/IFacts";
+import { Loading } from "./Loading";
 
 type ChildPropsPopularStations = {
   mostPopularStations: IMostPopularStation[];
@@ -7,6 +8,10 @@ type ChildPropsPopularStations = {
 const PopularStations = ({
   mostPopularStations,
 }: ChildPropsPopularStations) => {
+  if (!mostPopularStations.length) {
+    return <Loading />;
+  }
+
   return (
     <div className="drop-shadow-lg">
       <div className="rounded-t-lg bg-white p-4 dark:bg-slate-700">
