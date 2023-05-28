@@ -29,8 +29,7 @@ const PopularStations = ({
           {mostPopularStations.map((station, index) => (
             <tr
               key={station.station_id}
-              className="text-slate-700 odd:bg-white even:bg-slate-100 dark:text-slate-300
-                 dark:odd:bg-slate-700 dark:even:bg-slate-800"
+              className="text-slate-700 odd:bg-white even:bg-slate-100 dark:text-slate-300 dark:odd:bg-slate-700 dark:even:bg-slate-800"
             >
               <td className="dark:text-slate-100">{index + 1}</td>
               <td>{station.station_name}</td>

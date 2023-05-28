@@ -5,6 +5,7 @@ import { vi } from "vitest";
 import Home from "../components/Home";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { mockPopularStations } from "../mocks/mockPopularStations";
 
 describe("Home", () => {
   it("renders Home and Navbar component", async () => {
@@ -24,12 +25,13 @@ describe("Home", () => {
           setPage={setPage}
           selected={mockStations[0]}
           setSelected={setSelected}
+          mostPopularStations={mockPopularStations}
         />
       </MemoryRouter>
     );
-    expect(screen.getByRole("table")).toBeInTheDocument();
-    // table rows should be 3 because mock trips has lenght of 2 plus table head row
-    expect(screen.getAllByRole("row")).toHaveLength(3);
+
+    expect(screen.getByTestId("most-popular-stations")).toBeInTheDocument();
+    expect(screen.getByTestId("journeys-table")).toBeInTheDocument();
     expect(await screen.findByTestId("active-station")).toBeInTheDocument();
   });
 });

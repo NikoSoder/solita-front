@@ -10,7 +10,10 @@ type ChildPropsTable = {
 const Table = ({ trips, page }: ChildPropsTable) => {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full table-auto lg:table-fixed">
+      <table
+        data-testid="journeys-table"
+        className="w-full table-auto lg:table-fixed"
+      >
         <thead>
           <tr
             className="bg-slate-100 tracking-wide text-black dark:bg-slate-800
