@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
 import { IMostPopularStation } from "./types/IFacts";
 import { Loading } from "./components/Loading";
+import { checkUserTheme } from "./utils/theme";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
@@ -23,6 +24,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        checkUserTheme();
         const stationsResponse = await apiService.getStations();
         stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
         setSelected(stationsResponse[0]);
