@@ -5,16 +5,16 @@ import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(true);
+  const [isLightTheme, setIsLightTheme] = useState(true);
   useEffect(() => {
     document.documentElement.classList.contains("dark")
-      ? setTheme(false)
-      : setTheme(true);
+      ? setIsLightTheme(false)
+      : setIsLightTheme(true);
   }, []);
 
   const toggleTheme = () => {
     document.documentElement.classList.toggle("dark");
-    setTheme(!theme);
+    setIsLightTheme(!isLightTheme);
   };
   return (
     <nav
@@ -33,7 +33,7 @@ const Navbar = () => {
       </div>
 
       <div>
-        {theme ? (
+        {isLightTheme ? (
           <button
             data-testid="sunIcon"
             onClick={toggleTheme}

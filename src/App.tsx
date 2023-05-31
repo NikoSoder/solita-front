@@ -6,9 +6,10 @@ import apiService from "./services/api-service";
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
-import { Loading } from "./components/Loading";
 import Navbar from "./components/Navbar";
 import { IMostPopularStation } from "./types/IFacts";
+import { Loading } from "./components/Loading";
+import { checkUserTheme } from "./utils/theme";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
@@ -23,14 +24,15 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tripsResponse = await apiService.getPage(page);
+        checkUserTheme();
         const stationsResponse = await apiService.getStations();
+        stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
+        setSelected(stationsResponse[0]);
+        const tripsResponse = await apiService.getPage(page);
         const mostPopularStationsResponse =
           await apiService.getInterestingFacts();
         setTrips(tripsResponse.trips);
         setTotalPageCount(tripsResponse.totalPageCount);
-        stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
-        setSelected(stationsResponse[0]);
         setStations(stationsResponse);
         setMostPopularStations(mostPopularStationsResponse.busiestStations);
       } catch (error) {
@@ -42,34 +44,34 @@ const App = () => {
     fetchData();
   }, []);
 
+  if (!selected) {
+    return <Loading />;
+  }
+
   return (
     <HashRouter>
-      {!trips.length || !stations.length || !selected ? (
-        <Loading />
-      ) : (
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/home"
-            element={
-              <div className="bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
-                <Navbar />
-                <Home
-                  trips={trips}
-                  setTrips={setTrips}
-                  stations={stations}
-                  page={page}
-                  setPage={setPage}
-                  totalPageCount={totalPageCount}
-                  selected={selected}
-                  setSelected={setSelected}
-                  mostPopularStations={mostPopularStations}
-                />
-              </div>
-            }
-          />
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/home"
+          element={
+            <div className="bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
+              <Navbar />
+              <Home
+                trips={trips}
+                setTrips={setTrips}
+                stations={stations}
+                page={page}
+                setPage={setPage}
+                totalPageCount={totalPageCount}
+                selected={selected}
+                setSelected={setSelected}
+                mostPopularStations={mostPopularStations}
+              />
+            </div>
+          }
+        />
+      </Routes>
     </HashRouter>
   );
 };
