@@ -77,6 +77,10 @@ const Home = ({
     }
   };
 
+  if (!trips.length || !stations.length) {
+    return <Loading />;
+  }
+
   return (
     <div className="min-h-screen">
       <div className="container mx-auto flex flex-col gap-4 p-3 py-10 lg:flex-row">
