@@ -1,8 +1,8 @@
-import { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { IStation } from "../types/IStation";
 import { Dispatch } from "react";
+import { Fragment, useState } from "react";
+import { Combobox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 interface ChildPropsSelect {
   stations: IStation[];
@@ -11,79 +11,94 @@ interface ChildPropsSelect {
 }
 
 const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
+  const [query, setQuery] = useState("");
+
+  const filteredStations =
+    query === ""
+      ? stations
+      : stations.filter((station) =>
+          station.name
+            .toLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""))
+        );
+
   return (
     <div>
       <div>
         <h2 className="text-xl tracking-wide dark:text-slate-100">Stations</h2>
       </div>
-      <Listbox value={selected} onChange={setSelected}>
+      <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <Listbox.Button
-            className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left 
-            shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2
-            focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2
-            focus-visible:ring-offset-orange-300 dark:border dark:border-slate-500 dark:bg-gray-900
-            dark:text-slate-300"
+          <div
+            className="relative w-full cursor-default overflow-hidden rounded-lg bg-white 
+            text-left shadow-md dark:border dark:border-slate-500 dark:bg-slate-800"
           >
-            <span data-testid="active-station" className="block truncate">
-              {selected.name}
-            </span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+            <Combobox.Input
+              data-testid="active-station"
+              className="w-full border-none py-2 pl-3 pr-10 leading-5 text-gray-900 outline-0
+              dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300"
+              displayValue={(station) => (station as IStation).name}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+            <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-            </span>
-          </Listbox.Button>
+            </Combobox.Button>
+          </div>
           <Transition
             as={Fragment}
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
+            afterLeave={() => setQuery("")}
           >
-            <Listbox.Options
-              className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white 
-              py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border
-              dark:border-slate-500 dark:bg-gray-900"
+            <Combobox.Options
+              className="mt-2 max-h-60 w-full overflow-auto rounded-md
+              bg-white text-base shadow-lg dark:border dark:border-slate-500 dark:bg-slate-800"
             >
-              {stations.map((station) => (
-                <Listbox.Option
-                  key={station.id}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active
-                        ? "bg-sky-100 text-sky-900"
-                        : "text-slate-800 dark:text-slate-300"
-                    }`
-                  }
-                  value={station}
-                >
-                  {({ selected }) => (
-                    <>
-                      <span
-                        className={`block truncate ${
-                          selected ? "font-medium" : "font-normal"
-                        }`}
-                      >
-                        {station.name}
-                      </span>
-                      {selected ? (
-                        <span
-                          className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600
-                          dark:text-sky-500"
-                        >
-                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                        </span>
-                      ) : null}
-                    </>
-                  )}
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
+              {filteredStations.length === 0 && query !== "" ? (
+                <div className="relative cursor-default select-none px-4 py-2 text-slate-800 dark:text-slate-300">
+                  Nothing found.
+                </div>
+              ) : (
+                filteredStations.map((station) => (
+                  <Combobox.Option
+                    key={station.fid}
+                    className={({ active }) =>
+                      `relative cursor-pointer select-none py-2 pl-10 pr-4 dark:bg-slate-800 ${
+                        active
+                          ? "bg-sky-700 text-white dark:bg-sky-500"
+                          : "text-slate-800 dark:text-slate-300"
+                      }`
+                    }
+                    value={station}
+                  >
+                    {({ selected, active }) => (
+                      <>
+                        <span>{station.name}</span>
+                        {selected ? (
+                          <span
+                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                              active ? "text-white" : "text-sky-400"
+                            }`}
+                          >
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Combobox.Option>
+                ))
+              )}
+            </Combobox.Options>
           </Transition>
         </div>
-      </Listbox>
+      </Combobox>
     </div>
   );
 };
+
 export default Select;

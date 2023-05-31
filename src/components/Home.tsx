@@ -107,13 +107,11 @@ const Home = ({
         </div>
         {/* stations view */}
         <div className="flex flex-grow flex-col gap-5 rounded-lg">
-          <div>
-            <Select
-              stations={stations}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </div>
+          <Select
+            stations={stations}
+            selected={selected}
+            setSelected={setSelected}
+          />
           {skeletonLoading ? (
             <SkeletonLoading />
           ) : (
