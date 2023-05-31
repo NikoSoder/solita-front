@@ -20,7 +20,7 @@ const Pagination = ({
         data-testid="first-button"
         onClick={() => goToPage(0)}
         disabled={page === 0 ? true : false}
-        className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer
+        className="group rounded border border-sky-600 p-1 hover:text-white enabled:cursor-pointer
        enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500
        dark:disabled:border-slate-500"
       >
@@ -34,7 +34,7 @@ const Pagination = ({
         data-testid="previous-button"
         onClick={() => goToPage(page - 1)}
         disabled={page === 0 ? true : false}
-        className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600
+        className="group rounded border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600
        disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
       >
         <ChevronLeftIcon
@@ -45,7 +45,7 @@ const Pagination = ({
 
       {/* page count */}
       <div
-        className="w-52 border border-sky-600 px-4 py-1 text-center dark:border-sky-500
+        className="w-52 rounded border border-sky-600 px-4 py-1 text-center dark:border-sky-500
      dark:text-slate-200"
       >
         <p>
@@ -57,7 +57,7 @@ const Pagination = ({
         onClick={() => goToPage(page + 1)}
         data-testid="next-button"
         disabled={page === totalPageCount ? true : false}
-        className="group border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600
+        className="group rounded border border-sky-600 p-1 enabled:cursor-pointer enabled:hover:bg-sky-600
        disabled:border-slate-300 dark:border-sky-500 dark:disabled:border-slate-500"
       >
         <ChevronRightIcon
@@ -70,7 +70,7 @@ const Pagination = ({
         onClick={() => goToPage(totalPageCount)}
         data-testid="last-button"
         disabled={page === totalPageCount ? true : false}
-        className="group border border-sky-600 p-1 hover:text-white enabled:cursor-pointer
+        className="group rounded border border-sky-600 p-1 hover:text-white enabled:cursor-pointer
        enabled:hover:bg-sky-600 disabled:border-slate-300 dark:border-sky-500
        dark:disabled:border-slate-500"
       >
