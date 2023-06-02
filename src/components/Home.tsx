@@ -79,7 +79,10 @@ const Home = ({
   const goToPage = async (pageNumber: number) => {
     try {
       setLoading(true);
-      const pageResponse = await apiService.getPage(pageNumber);
+      const pageResponse = await apiService.getPage(
+        pageNumber,
+        selectedPageLimit
+      );
       setTrips(pageResponse.trips);
       setPage(pageNumber);
       setLoading(false);

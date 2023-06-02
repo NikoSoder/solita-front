@@ -28,7 +28,7 @@ const App = () => {
         const stationsResponse = await apiService.getStations();
         stationsResponse.sort((a, b) => a.name.localeCompare(b.name));
         setSelected(stationsResponse[0]);
-        const tripsResponse = await apiService.getPage(page);
+        const tripsResponse = await apiService.getPage();
         const mostPopularStationsResponse =
           await apiService.getInterestingFacts();
         setTrips(tripsResponse.trips);
