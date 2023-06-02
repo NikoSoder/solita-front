@@ -25,6 +25,8 @@ interface ChildPropsHome {
   selected: IStation;
   setSelected: Dispatch<React.SetStateAction<IStation | null>>;
   mostPopularStations: IMostPopularStation[];
+  handlePageLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedPageLimit: string;
 }
 
 const Home = ({
@@ -37,6 +39,8 @@ const Home = ({
   selected,
   setSelected,
   mostPopularStations,
+  handlePageLimitChange,
+  selectedPageLimit,
 }: ChildPropsHome) => {
   const [loading, setLoading] = useState(false);
   const [skeletonLoading, setSkeletonLoading] = useState(false);
@@ -44,7 +48,6 @@ const Home = ({
     departureCount: 0,
     returnCount: 0,
   });
-  const [selectedPageLimit, setSelectedPageLimit] = useState("10");
 
   useEffect(() => {
     const getStats = async () => {
@@ -66,15 +69,6 @@ const Home = ({
     };
     getStats();
   }, [selected]);
-
-  const handlePageLimitChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    //todo: do api request with ?limit=event.target.value
-    //goToPage needs limit as parameter
-    console.log(event.target.value);
-    setSelectedPageLimit(event.target.value);
-  };
 
   const goToPage = async (pageNumber: number) => {
     try {

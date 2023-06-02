@@ -20,6 +20,7 @@ const App = () => {
   const [mostPopularStations, setMostPopularStations] = useState<
     IMostPopularStation[]
   >([]);
+  const [selectedPageLimit, setSelectedPageLimit] = useState("10");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +45,16 @@ const App = () => {
     fetchData();
   }, []);
 
+  const handlePageLimitChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedPageLimit(event.target.value);
+    const pageResponse = await apiService.getPage(0, event.target.value);
+    setTrips(pageResponse.trips);
+    setPage(0);
+    setTotalPageCount(pageResponse.totalPageCount);
+  };
+
   if (!selected) {
     return <Loading />;
   }
@@ -67,6 +78,8 @@ const App = () => {
                 selected={selected}
                 setSelected={setSelected}
                 mostPopularStations={mostPopularStations}
+                handlePageLimitChange={handlePageLimitChange}
+                selectedPageLimit={selectedPageLimit}
               />
             </div>
           }
