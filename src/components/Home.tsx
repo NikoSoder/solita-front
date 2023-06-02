@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import SkeletonLoading from "./SkeletonLoading";
 import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
+import PageLimit from "./PageLimit";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -43,6 +44,7 @@ const Home = ({
     departureCount: 0,
     returnCount: 0,
   });
+  const [selectedPageLimit, setSelectedPageLimit] = useState("10");
 
   useEffect(() => {
     const getStats = async () => {
@@ -64,6 +66,15 @@ const Home = ({
     };
     getStats();
   }, [selected]);
+
+  const handlePageLimitChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    //todo: do api request with ?limit=event.target.value
+    //goToPage needs limit as parameter
+    console.log(event.target.value);
+    setSelectedPageLimit(event.target.value);
+  };
 
   const goToPage = async (pageNumber: number) => {
     try {
@@ -87,7 +98,7 @@ const Home = ({
         {/* trips view */}
         <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
           <div
-            className="flex flex-col gap-2 rounded-t-lg bg-white p-4
+            className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4
                 dark:bg-slate-700 sm:items-center"
           >
             <div>
@@ -102,6 +113,10 @@ const Home = ({
                 page={page}
               />
             </div>
+            <PageLimit
+              handlePageLimitChange={handlePageLimitChange}
+              selectedPageLimit={selectedPageLimit}
+            />
           </div>
           {loading ? <Loading /> : <Table trips={trips} page={page} />}
         </div>
