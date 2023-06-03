@@ -91,9 +91,9 @@ const Home = ({
 
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto flex flex-col gap-4 p-3 py-10 lg:flex-row">
+      <div className="container mx-auto flex flex-col gap-6 p-3 py-10 lg:flex-row">
         {/* trips view */}
-        <div className="drop-shadow-lg lg:w-3/4 xl:w-1/2">
+        <div className="drop-shadow-lg lg:w-2/3">
           <div
             className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4
                 dark:bg-slate-700 sm:items-center"
@@ -118,14 +118,12 @@ const Home = ({
           {loading ? <Loading /> : <Table trips={trips} />}
         </div>
         {/* stations view */}
-        <div className="flex flex-grow flex-col gap-5 rounded-lg">
-          <div>
-            <Select
-              stations={stations}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </div>
+        <div className="flex flex-col gap-5 rounded-lg">
+          <Select
+            stations={stations}
+            selected={selected}
+            setSelected={setSelected}
+          />
           {skeletonLoading ? (
             <SkeletonLoading />
           ) : (

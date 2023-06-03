@@ -27,7 +27,7 @@ const PopularStations = ({
           >
             <th className="font-semibold">Rank</th>
             <th className="font-semibold">Station name</th>
-            <th className="font-semibold">Number of journeys</th>
+            <th className="font-semibold">Journeys</th>
           </tr>
         </thead>
         <tbody>

@@ -8,7 +8,7 @@ type ChildPropsTable = {
 
 const Table = ({ trips }: ChildPropsTable) => {
   return (
-    <div className="max-h-[600px] overflow-x-auto">
+    <div className="max-h-[700px] overflow-x-auto">
       <table
         data-testid="journeys-table"
         className="w-full table-auto lg:table-fixed"
