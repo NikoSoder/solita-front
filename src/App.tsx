@@ -66,7 +66,7 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <div className="bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
+            <div className="min-h-screen bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
               <Navbar />
               <Home
                 trips={trips}
