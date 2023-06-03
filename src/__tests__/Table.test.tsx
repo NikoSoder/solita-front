@@ -5,7 +5,7 @@ import { convertSecondsToMinutes } from "../utils/secondsToMinutes";
 
 describe("Table", () => {
   it("renders Table component", async () => {
-    render(<Table trips={mockTrips} page={1} />);
+    render(<Table trips={mockTrips} />);
     expect(await screen.findAllByRole("row")).toHaveLength(3);
     /* renders kilometers correctly */
     expect(await screen.findByText("0.01 km")).toBeInTheDocument();
