@@ -90,47 +90,45 @@ const Home = ({
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto flex flex-col gap-6 p-3 py-10 lg:flex-row">
-        {/* trips view */}
-        <div className="drop-shadow-lg lg:w-2/3">
-          <div
-            className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4
+    <div className="container mx-auto flex flex-col gap-6 p-3 py-10 lg:flex-row">
+      {/* trips view */}
+      <div className="drop-shadow-lg lg:w-2/3">
+        <div
+          className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4
                 dark:bg-slate-700 sm:items-center"
-          >
-            <div>
-              <h3 className="text-xl tracking-wide dark:text-slate-100">
-                Browse journeys
-              </h3>
-            </div>
-            <div className="flex gap-1">
-              <Pagination
-                goToPage={goToPage}
-                totalPageCount={totalPageCount}
-                page={page}
-              />
-            </div>
-            <PageLimit
-              handlePageLimitChange={handlePageLimitChange}
-              selectedPageLimit={selectedPageLimit}
+        >
+          <div>
+            <h3 className="text-xl tracking-wide dark:text-slate-100">
+              Browse journeys
+            </h3>
+          </div>
+          <div className="flex gap-1">
+            <Pagination
+              goToPage={goToPage}
+              totalPageCount={totalPageCount}
+              page={page}
             />
           </div>
-          {loading ? <Loading /> : <Table trips={trips} />}
-        </div>
-        {/* stations view */}
-        <div className="flex flex-col gap-5 rounded-lg">
-          <Select
-            stations={stations}
-            selected={selected}
-            setSelected={setSelected}
+          <PageLimit
+            handlePageLimitChange={handlePageLimitChange}
+            selectedPageLimit={selectedPageLimit}
           />
-          {skeletonLoading ? (
-            <SkeletonLoading />
-          ) : (
-            <Station selected={selected} stationStats={stationStats} />
-          )}
-          <PopularStations mostPopularStations={mostPopularStations} />
         </div>
+        {loading ? <Loading /> : <Table trips={trips} />}
+      </div>
+      {/* stations view */}
+      <div className="flex flex-col gap-5 rounded-lg">
+        <Select
+          stations={stations}
+          selected={selected}
+          setSelected={setSelected}
+        />
+        {skeletonLoading ? (
+          <SkeletonLoading />
+        ) : (
+          <Station selected={selected} stationStats={stationStats} />
+        )}
+        <PopularStations mostPopularStations={mostPopularStations} />
       </div>
     </div>
   );
