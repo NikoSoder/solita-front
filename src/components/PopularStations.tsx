@@ -30,7 +30,7 @@ const PopularStations = ({
             <th className="font-semibold">Number of journeys</th>
           </tr>
         </thead>
-        <tbody className="main-animation">
+        <tbody>
           {mostPopularStations.map((station, index) => (
             <tr
               key={station.station_id}

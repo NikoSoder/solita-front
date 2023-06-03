@@ -25,8 +25,7 @@ const Table = ({ trips, page }: ChildPropsTable) => {
             <th className="font-semibold">Duration</th>
           </tr>
         </thead>
-        {/* add key to tbody so animations run every time page changes */}
-        <tbody key={page} className="main-animation">
+        <tbody>
           {trips.map((trip) => (
             <tr
               key={trip.id}
