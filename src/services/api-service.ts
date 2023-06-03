@@ -20,8 +20,13 @@ const getStats = async (id: string): Promise<IStationStats> => {
   return response.data;
 };
 
-const getPage = async (page: number): Promise<IPageResponse> => {
-  const response = await axios.get(`${baseUrl}trips/${page}`);
+const getPage = async (
+  page?: number,
+  limit?: string
+): Promise<IPageResponse> => {
+  const response = await axios.get(
+    `${baseUrl}trips?page=${page}&limit=${limit}`
+  );
   return response.data;
 };
 

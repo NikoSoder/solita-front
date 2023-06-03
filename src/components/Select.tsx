@@ -12,7 +12,7 @@ interface ChildPropsSelect {
 
 const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
   return (
-    <div>
+    <div className="max-w-sm">
       <div>
         <h2 className="text-xl tracking-wide dark:text-slate-100">Stations</h2>
       </div>
