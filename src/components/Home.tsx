@@ -115,7 +115,7 @@ const Home = ({
               selectedPageLimit={selectedPageLimit}
             />
           </div>
-          {loading ? <Loading /> : <Table trips={trips} page={page} />}
+          {loading ? <Loading /> : <Table trips={trips} />}
         </div>
         {/* stations view */}
         <div className="flex flex-grow flex-col gap-5 rounded-lg">

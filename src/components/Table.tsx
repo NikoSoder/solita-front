@@ -4,10 +4,9 @@ import { convertMetersToKm } from "../utils/metersToKm";
 
 type ChildPropsTable = {
   trips: ITrip[];
-  page: number;
 };
 
-const Table = ({ trips, page }: ChildPropsTable) => {
+const Table = ({ trips }: ChildPropsTable) => {
   return (
     <div className="max-h-[600px] overflow-x-auto">
       <table
