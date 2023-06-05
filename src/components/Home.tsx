@@ -14,6 +14,7 @@ import SkeletonLoading from "./SkeletonLoading";
 import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import PageLimit from "./PageLimit";
+import Map from "./Map";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -128,6 +129,7 @@ const Home = ({
         ) : (
           <Station selected={selected} stationStats={stationStats} />
         )}
+        <Map selected={selected} />
         <PopularStations mostPopularStations={mostPopularStations} />
       </div>
     </div>
