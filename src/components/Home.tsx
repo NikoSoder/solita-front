@@ -118,17 +118,19 @@ const Home = ({
         {loading ? <Loading /> : <Table trips={trips} />}
       </div>
       {/* stations view */}
-      <div className="flex flex-col gap-5 rounded-lg">
-        <Select
-          stations={stations}
-          selected={selected}
-          setSelected={setSelected}
-        />
-        {skeletonLoading ? (
-          <SkeletonLoading />
-        ) : (
-          <Station selected={selected} stationStats={stationStats} />
-        )}
+      <div className="flex grow flex-col gap-5">
+        <div className="flex flex-col gap-4">
+          <Select
+            stations={stations}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          {skeletonLoading ? (
+            <SkeletonLoading />
+          ) : (
+            <Station selected={selected} stationStats={stationStats} />
+          )}
+        </div>
         <Map selected={selected} />
         <PopularStations mostPopularStations={mostPopularStations} />
       </div>
