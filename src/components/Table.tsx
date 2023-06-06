@@ -28,8 +28,7 @@ const Table = ({ trips }: ChildPropsTable) => {
           {trips.map((trip) => (
             <tr
               key={trip.id}
-              className="text-slate-700 odd:bg-white even:bg-slate-100 dark:text-slate-300
-             dark:odd:bg-slate-700 dark:even:bg-slate-800"
+              className="border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
             >
               <td>{trip.departure_station_name}</td>
               <td>{trip.return_station_name}</td>

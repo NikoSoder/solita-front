@@ -26,8 +26,8 @@ const PopularStations = ({
         >
           <thead>
             <tr
-              className="bg-gray-100 tracking-wide text-black dark:bg-slate-500
-               dark:text-slate-100"
+              className="bg-gray-100 tracking-wide text-black
+              dark:bg-slate-500 dark:text-slate-100"
             >
               <th className="font-semibold">Rank</th>
               <th className="font-semibold">Station name</th>
@@ -38,9 +38,9 @@ const PopularStations = ({
             {mostPopularStations.map((station, index) => (
               <tr
                 key={station.station_id}
-                className="text-slate-700 odd:bg-white even:bg-slate-100 dark:text-slate-300 dark:odd:bg-slate-700 dark:even:bg-slate-800"
+                className="border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
               >
-                <td className="dark:text-slate-100">{index + 1}</td>
+                <td>{index + 1}</td>
                 <td>{station.station_name}</td>
                 <td>{station.num_journeys}</td>
               </tr>

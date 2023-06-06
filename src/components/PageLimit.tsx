@@ -12,7 +12,7 @@ const PageLimit = ({
       <select
         value={selectedPageLimit}
         onChange={(e) => handlePageLimitChange(e)}
-        className="rounded border border-slate-300 bg-white p-2 text-gray-900 outline-none hover:border-sky-600 dark:bg-slate-500 dark:text-white dark:hover:border-white"
+        className="rounded border border-slate-300 bg-white p-2 text-gray-900 outline-none hover:border-sky-600 dark:border-slate-500 dark:bg-slate-700 dark:text-white dark:hover:border-slate-400"
       >
         <option value="10">10</option>
         <option value="25">25</option>
