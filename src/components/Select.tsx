@@ -48,17 +48,8 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
               />
             </Combobox.Button>
           </div>
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-            afterLeave={() => setQuery("")}
-          >
-            <Combobox.Options
-              className="mt-2 max-h-60 w-full overflow-auto rounded-md
-              bg-white text-base shadow-lg dark:border dark:border-slate-500 dark:bg-slate-800"
-            >
+          <Transition as={Fragment} afterLeave={() => setQuery("")}>
+            <Combobox.Options className="absolute mt-2 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg dark:border dark:border-slate-500 dark:bg-slate-800">
               {filteredStations.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none px-4 py-2 text-slate-800 dark:text-slate-300">
                   Nothing found.
