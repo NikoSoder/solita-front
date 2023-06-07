@@ -25,8 +25,7 @@ const LandingPage = () => {
       </div>
       <div className="text-center">
         <Link
-          className="rounded bg-blue-600 px-6 py-4 text-sm text-white drop-shadow-xl
-         hover:bg-blue-500"
+          className="rounded bg-blue-600 px-6 py-4 text-sm text-white drop-shadow-xl  hover:bg-blue-500"
           to="/home"
         >
           GET STARTED

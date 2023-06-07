@@ -30,14 +30,10 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
       </div>
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <div
-            className="relative w-full cursor-default overflow-hidden rounded-lg bg-white 
-            text-left shadow-md dark:border dark:border-slate-500 dark:bg-slate-800"
-          >
+          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md dark:border dark:border-slate-500 dark:bg-slate-800">
             <Combobox.Input
               data-testid="active-station"
-              className="w-full border-none py-2 pl-3 pr-10 leading-5 text-gray-900 outline-0
-              dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300"
+              className="w-full border-none py-2 pl-3 pr-10 leading-5 text-gray-900 outline-0 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300"
               displayValue={(station) => (station as IStation).name}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -61,7 +57,7 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
                     className={({ active }) =>
                       `relative cursor-pointer select-none py-2 pl-10 pr-4 dark:bg-slate-800 ${
                         active
-                          ? "bg-sky-700 text-white dark:bg-sky-500"
+                          ? "bg-sky-700 text-white dark:bg-sky-600"
                           : "text-slate-800 dark:text-slate-300"
                       }`
                     }

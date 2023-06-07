@@ -96,7 +96,7 @@ const Home = ({
       <div className="drop-shadow-lg lg:w-2/3">
         <div
           className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4
-                dark:bg-slate-700 sm:items-center"
+          dark:bg-slate-700 sm:items-center"
         >
           <div>
             <h3 className="text-xl tracking-wide dark:text-slate-100">

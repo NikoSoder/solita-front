@@ -14,10 +14,7 @@ const Table = ({ trips }: ChildPropsTable) => {
         className="w-full table-auto lg:table-fixed"
       >
         <thead className="sticky top-0 z-10">
-          <tr
-            className="bg-gray-100 tracking-wide text-black dark:bg-slate-500
-         dark:text-slate-100"
-          >
+          <tr className="bg-gray-100 tracking-wide text-black dark:bg-slate-500 dark:text-slate-100">
             <th className="font-semibold">Departure</th>
             <th className="font-semibold">Return</th>
             <th className="font-semibold">Distance</th>

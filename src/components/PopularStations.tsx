@@ -25,10 +25,7 @@ const PopularStations = ({
           className="w-full table-auto"
         >
           <thead>
-            <tr
-              className="bg-gray-100 tracking-wide text-black
-              dark:bg-slate-500 dark:text-slate-100"
-            >
+            <tr className="bg-gray-100 tracking-wide text-black dark:bg-slate-500 dark:text-slate-100">
               <th className="font-semibold">Rank</th>
               <th className="font-semibold">Station name</th>
               <th className="font-semibold">Journeys</th>
