@@ -55,9 +55,9 @@ const Select = ({ stations, selected, setSelected }: ChildPropsSelect) => {
                   <Combobox.Option
                     key={station.fid}
                     className={({ active }) =>
-                      `relative cursor-pointer select-none py-2 pl-10 pr-4 dark:bg-slate-800 ${
+                      `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
                         active
-                          ? "bg-sky-700 text-white dark:bg-sky-600"
+                          ? "bg-sky-700 text-white dark:hover:bg-sky-600"
                           : "text-slate-800 dark:text-slate-300"
                       }`
                     }
