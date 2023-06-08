@@ -15,6 +15,7 @@ import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import PageLimit from "./PageLimit";
 import Map from "./Map";
+import StationList from "./StationList";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -126,6 +127,7 @@ const Home = ({
             selected={selected}
             setSelected={setSelected}
           />
+          <StationList stations={stations} setSelected={setSelected} />
           {skeletonLoading ? (
             <SkeletonLoading />
           ) : (
