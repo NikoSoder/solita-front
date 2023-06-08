@@ -7,7 +7,7 @@ interface ChildPropsStationList {
 }
 
 const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
-  const [visibleItems, setVisibleItems] = useState(10);
+  const [visibleItems, setVisibleItems] = useState(15);
 
   return (
     <div className="flex h-72 max-w-sm grow flex-col overflow-auto rounded bg-white shadow-md dark:border dark:border-slate-500 dark:bg-slate-800">
@@ -24,10 +24,13 @@ const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
       </ul>
       {visibleItems < stations.length && (
         <button
-          className="bg-gray-200 px-3 py-2 text-black dark:bg-slate-500 dark:text-white"
-          onClick={() => setVisibleItems((prev) => prev + 10)}
+          className="relative w-full bg-gray-200 px-3 py-2 text-black dark:bg-slate-500 dark:text-white"
+          onClick={() => setVisibleItems((prev) => prev + 15)}
         >
           Load More
+          <span className="absolute bottom-2 right-6 text-slate-500 dark:text-slate-300">
+            {visibleItems} / {stations.length}
+          </span>
         </button>
       )}
     </div>
