@@ -5,7 +5,7 @@ const LandingPage = () => {
     <div className="landing-animation container mx-auto flex flex-col gap-10 p-3 py-10">
       <div className="text-center">
         <h1 className="mb-1 text-5xl font-bold tracking-wide text-blue-900">
-          Helsinki city bike app
+          Helsinki city bike
         </h1>
         <p className="text-lg text-blue-900">
           (Solita Dev Academy pre-assignment)
@@ -25,8 +25,7 @@ const LandingPage = () => {
       </div>
       <div className="text-center">
         <Link
-          className="rounded bg-blue-600 px-6 py-4 text-sm text-white drop-shadow-xl
-         hover:bg-blue-500"
+          className="rounded bg-blue-600 px-6 py-4 text-sm text-white drop-shadow-xl  hover:bg-blue-500"
           to="/home"
         >
           GET STARTED

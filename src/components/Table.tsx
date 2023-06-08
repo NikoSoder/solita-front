@@ -14,10 +14,7 @@ const Table = ({ trips }: ChildPropsTable) => {
         className="w-full table-auto lg:table-fixed"
       >
         <thead className="sticky top-0 z-10">
-          <tr
-            className="bg-gray-100 tracking-wide text-black dark:bg-slate-500
-         dark:text-slate-100"
-          >
+          <tr className="bg-gray-100 tracking-wide text-black dark:bg-slate-500 dark:text-slate-100">
             <th className="font-semibold">Departure</th>
             <th className="font-semibold">Return</th>
             <th className="font-semibold">Distance</th>
@@ -28,8 +25,7 @@ const Table = ({ trips }: ChildPropsTable) => {
           {trips.map((trip) => (
             <tr
               key={trip.id}
-              className="text-slate-700 odd:bg-white even:bg-slate-100 dark:text-slate-300
-             dark:odd:bg-slate-700 dark:even:bg-slate-800"
+              className="border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
             >
               <td>{trip.departure_station_name}</td>
               <td>{trip.return_station_name}</td>

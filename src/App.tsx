@@ -66,7 +66,7 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <div className="min-h-screen bg-[url('/src/assets/light.png')] dark:bg-[url('/src/assets/dark.png')]">
+            <div className="min-h-screen from-slate-800 to-slate-900 dark:bg-gradient-to-t">
               <Navbar />
               <Home
                 trips={trips}
