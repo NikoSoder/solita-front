@@ -113,6 +113,7 @@ const Home = ({
           <PageLimit
             handlePageLimitChange={handlePageLimitChange}
             selectedPageLimit={selectedPageLimit}
+            loading={loading}
           />
         </div>
         {loading ? <Loading /> : <Table trips={trips} />}
