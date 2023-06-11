@@ -24,11 +24,11 @@ const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
       </ul>
       {visibleItems < stations.length && (
         <button
-          className="relative w-full bg-gray-200 px-3 py-2 text-black dark:bg-slate-500 dark:text-white"
+          className="relative w-full px-3 py-2 font-medium text-blue-600 dark:bg-slate-800 dark:text-slate-300"
           onClick={() => setVisibleItems((prev) => prev + 15)}
         >
           Load More
-          <span className="absolute bottom-2 right-6 text-slate-500 dark:text-slate-300">
+          <span className="absolute bottom-2 right-6 font-normal text-slate-400 dark:text-slate-400">
             {visibleItems} / {stations.length}
           </span>
         </button>
