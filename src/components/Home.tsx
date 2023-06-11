@@ -4,7 +4,6 @@ import { Dispatch } from "react";
 import { IStation, IStationStats } from "../types/IStation";
 import { ITrip } from "../types/ITrip";
 import Table from "./Table";
-import Select from "./Select";
 import Station from "./Station";
 import Pagination from "./Pagination";
 import apiService from "../services/api-service";
