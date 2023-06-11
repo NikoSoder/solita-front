@@ -4,7 +4,6 @@ import { Dispatch } from "react";
 import { IStation, IStationStats } from "../types/IStation";
 import { ITrip } from "../types/ITrip";
 import Table from "./Table";
-import Select from "./Select";
 import Station from "./Station";
 import Pagination from "./Pagination";
 import apiService from "../services/api-service";
@@ -15,6 +14,7 @@ import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import PageLimit from "./PageLimit";
 import Map from "./Map";
+import StationList from "./StationList";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -119,13 +119,14 @@ const Home = ({
         {loading ? <Loading /> : <Table trips={trips} />}
       </div>
       {/* stations view */}
-      <div className="flex grow flex-col gap-5">
-        <div className="flex flex-col gap-4">
-          <Select
-            stations={stations}
-            selected={selected}
-            setSelected={setSelected}
-          />
+      <div className="flex grow flex-col gap-4">
+        <div>
+          <h2 className="text-xl tracking-wide dark:text-slate-100">
+            Stations
+          </h2>
+        </div>
+        <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+          <StationList stations={stations} setSelected={setSelected} />
           {skeletonLoading ? (
             <SkeletonLoading />
           ) : (
