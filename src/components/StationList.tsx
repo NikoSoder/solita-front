@@ -20,7 +20,7 @@ const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
   });
 
   return (
-    <div className="grow">
+    <div className="flex-1 grow">
       <div className="relative mb-3 max-w-sm">
         <MagnifyingGlassIcon className="absolute left-2 top-2 h-6 w-6 text-slate-400" />
         <input

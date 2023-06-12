@@ -44,7 +44,7 @@ const Home = ({
   selectedPageLimit,
 }: ChildPropsHome) => {
   const [loading, setLoading] = useState(false);
-  const [skeletonLoading, setSkeletonLoading] = useState(false);
+  const [stationLoading, setStationLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
     departureCount: 0,
     returnCount: 0,
@@ -53,13 +53,13 @@ const Home = ({
   useEffect(() => {
     const getStats = async () => {
       try {
-        setSkeletonLoading(true);
+        setStationLoading(true);
         const response = await apiService.getStats(selected.id);
         setStationStats({
           departureCount: response.departureCount,
           returnCount: response.returnCount,
         });
-        setSkeletonLoading(false);
+        setStationLoading(false);
       } catch (error) {
         // TODO: npm test is failing on this
         /*   const errorMessage =
@@ -127,11 +127,11 @@ const Home = ({
         </div>
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
           <StationList stations={stations} setSelected={setSelected} />
-          {skeletonLoading ? (
-            <SkeletonLoading />
-          ) : (
-            <Station selected={selected} stationStats={stationStats} />
-          )}
+          <Station
+            selected={selected}
+            stationStats={stationStats}
+            stationLoading={stationLoading}
+          />
         </div>
         <Map selected={selected} />
         <PopularStations mostPopularStations={mostPopularStations} />
