@@ -1,6 +1,7 @@
 import { IStation, IStationStats } from "../types/IStation";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { CheckIcon } from "@heroicons/react/24/solid";
+import threedots from "../assets/three-dots.svg";
 
 type ChildPropsStation = {
   selected: IStation;
@@ -17,11 +18,7 @@ const Station = ({
     <div className="min-h-[231px] max-w-sm flex-1 rounded border border-transparent bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
       {stationLoading ? (
         <div className="flex h-40 items-center justify-center">
-          <img
-            src="src/assets/three-dots.svg"
-            alt="loading spinner"
-            className="w-16"
-          />
+          <img src={threedots} alt="loading spinner" className="w-16" />
         </div>
       ) : (
         <>
