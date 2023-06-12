@@ -125,7 +125,11 @@ const Home = ({
           </h2>
         </div>
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
-          <StationList stations={stations} setSelected={setSelected} />
+          <StationList
+            stations={stations}
+            setSelected={setSelected}
+            stationLoading={stationLoading}
+          />
           <Station
             selected={selected}
             stationStats={stationStats}

@@ -7,6 +7,7 @@ describe("StationList", () => {
   const props = {
     setSelected: vi.fn(),
     stations: mockStations,
+    stationLoading: false,
   };
   it("renders StationList component", () => {
     render(<StationList {...props} />);
