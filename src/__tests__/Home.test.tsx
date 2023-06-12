@@ -35,6 +35,5 @@ describe("Home", () => {
 
     expect(screen.getByTestId("most-popular-stations")).toBeInTheDocument();
     expect(screen.getByTestId("journeys-table")).toBeInTheDocument();
-    expect(await screen.findByTestId("active-station")).toBeInTheDocument();
   });
 });

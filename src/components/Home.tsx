@@ -4,16 +4,16 @@ import { Dispatch } from "react";
 import { IStation, IStationStats } from "../types/IStation";
 import { ITrip } from "../types/ITrip";
 import Table from "./Table";
-import Select from "./Select";
 import Station from "./Station";
 import Pagination from "./Pagination";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
-import SkeletonLoading from "./SkeletonLoading";
 import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import PageLimit from "./PageLimit";
+import Map from "./Map";
+import StationList from "./StationList";
 
 interface ChildPropsHome {
   trips: ITrip[];
@@ -43,7 +43,7 @@ const Home = ({
   selectedPageLimit,
 }: ChildPropsHome) => {
   const [loading, setLoading] = useState(false);
-  const [skeletonLoading, setSkeletonLoading] = useState(false);
+  const [stationLoading, setStationLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
     departureCount: 0,
     returnCount: 0,
@@ -52,13 +52,13 @@ const Home = ({
   useEffect(() => {
     const getStats = async () => {
       try {
-        setSkeletonLoading(true);
+        setStationLoading(true);
         const response = await apiService.getStats(selected.id);
         setStationStats({
           departureCount: response.departureCount,
           returnCount: response.returnCount,
         });
-        setSkeletonLoading(false);
+        setStationLoading(false);
       } catch (error) {
         // TODO: npm test is failing on this
         /*   const errorMessage =
@@ -95,7 +95,7 @@ const Home = ({
       <div className="drop-shadow-lg lg:w-2/3">
         <div
           className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4
-                dark:bg-slate-700 sm:items-center"
+          dark:bg-slate-700 sm:items-center"
         >
           <div>
             <h3 className="text-xl tracking-wide dark:text-slate-100">
@@ -112,22 +112,31 @@ const Home = ({
           <PageLimit
             handlePageLimitChange={handlePageLimitChange}
             selectedPageLimit={selectedPageLimit}
+            loading={loading}
           />
         </div>
         {loading ? <Loading /> : <Table trips={trips} />}
       </div>
       {/* stations view */}
-      <div className="flex flex-col gap-5 rounded-lg">
-        <Select
-          stations={stations}
-          selected={selected}
-          setSelected={setSelected}
-        />
-        {skeletonLoading ? (
-          <SkeletonLoading />
-        ) : (
-          <Station selected={selected} stationStats={stationStats} />
-        )}
+      <div className="flex grow flex-col gap-4">
+        <div>
+          <h2 className="text-xl tracking-wide dark:text-slate-100">
+            Stations
+          </h2>
+        </div>
+        <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+          <StationList
+            stations={stations}
+            setSelected={setSelected}
+            stationLoading={stationLoading}
+          />
+          <Station
+            selected={selected}
+            stationStats={stationStats}
+            stationLoading={stationLoading}
+          />
+        </div>
+        <Map selected={selected} />
         <PopularStations mostPopularStations={mostPopularStations} />
       </div>
     </div>

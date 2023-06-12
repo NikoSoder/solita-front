@@ -18,16 +18,12 @@ const Navbar = () => {
   };
   return (
     <nav
-      className="flex items-center justify-between px-2 py-2 dark:text-gray-300 
+      className="flex items-center justify-between px-2 py-4 dark:text-gray-300 
       sm:px-10"
     >
       <div className="flex">
-        <GlobeAltIcon className="h-8 w-8 text-sky-700" />
-        <Link
-          to="/"
-          className="bg-gradient-to-r from-sky-700 to-teal-800 bg-clip-text
-          text-2xl tracking-wide text-transparent dark:to-teal-600"
-        >
+        <GlobeAltIcon className="h-8 w-8 text-neutral-800 dark:text-blue-200" />
+        <Link to="/" className="text-2xl text-neutral-800 dark:text-blue-200">
           City Bike Helsinki
         </Link>
       </div>
@@ -39,7 +35,7 @@ const Navbar = () => {
             onClick={toggleTheme}
             className="rounded-full p-1 hover:bg-slate-200"
           >
-            <SunIcon className="main-animation h-6 w-6" />
+            <SunIcon className="main-animation h-6 w-6 text-neutral-800" />
           </button>
         ) : (
           <button
@@ -47,7 +43,7 @@ const Navbar = () => {
             onClick={toggleTheme}
             className="rounded-full p-1 hover:bg-gray-700"
           >
-            <MoonIcon className="main-animation h-6 w-6" />
+            <MoonIcon className="main-animation h-6 w-6 dark:text-blue-200" />
           </button>
         )}
       </div>
