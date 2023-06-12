@@ -30,9 +30,9 @@ const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
           onChange={(e) => setQuery(e.target.value.toLowerCase())}
         />
       </div>
-      <div className="flex h-72 max-w-sm grow flex-col overflow-auto rounded bg-white shadow-md dark:border dark:border-slate-500 dark:bg-slate-800">
+      <div className="flex max-h-72 max-w-sm grow flex-col overflow-y-auto rounded bg-white shadow-md dark:border dark:border-slate-500 dark:bg-slate-800">
         {filteredStations.length === 0 && query !== "" ? (
-          <div className="px-6 py-2 text-slate-700 dark:text-slate-300">
+          <div className="bg-sky-600 px-6 py-2 text-white dark:bg-sky-700">
             Nothing found
           </div>
         ) : (
