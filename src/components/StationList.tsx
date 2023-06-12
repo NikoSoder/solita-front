@@ -5,9 +5,14 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 interface ChildPropsStationList {
   stations: IStation[];
   setSelected: Dispatch<React.SetStateAction<IStation | null>>;
+  stationLoading: boolean;
 }
 
-const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
+const StationList = ({
+  stations,
+  setSelected,
+  stationLoading,
+}: ChildPropsStationList) => {
   const [visibleItems, setVisibleItems] = useState(15);
   const [query, setQuery] = useState("");
 
@@ -19,8 +24,16 @@ const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
     }
   });
 
+  const handleStationClick = (station: IStation) => {
+    // avoid spam by returning if station is being fetched already
+    if (stationLoading) {
+      return;
+    }
+    setSelected(station);
+  };
+
   return (
-    <div className="grow">
+    <div className="flex-1 grow">
       <div className="relative mb-3 max-w-sm">
         <MagnifyingGlassIcon className="absolute left-2 top-2 h-6 w-6 text-slate-400" />
         <input
@@ -39,7 +52,7 @@ const StationList = ({ stations, setSelected }: ChildPropsStationList) => {
           <ul className="flex flex-col text-slate-700 dark:text-slate-300">
             {filteredStations.slice(0, visibleItems).map((station) => (
               <li
-                onClick={() => setSelected(station)}
+                onClick={() => handleStationClick(station)}
                 className="cursor-pointer px-6 py-2 hover:bg-sky-600 hover:text-white dark:hover:bg-sky-700"
                 key={station.fid}
               >
