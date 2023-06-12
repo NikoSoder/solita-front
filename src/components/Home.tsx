@@ -9,7 +9,6 @@ import Pagination from "./Pagination";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { useEffect } from "react";
-import SkeletonLoading from "./SkeletonLoading";
 import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import PageLimit from "./PageLimit";
