@@ -1,13 +1,36 @@
 import { IMostPopularStation } from "../types/IFacts";
 import { Loading } from "./Loading";
+import { IStation } from "../types/IStation";
 
 type ChildPropsPopularStations = {
   mostPopularStations: IMostPopularStation[];
+  handleStationClick: (station: IStation) => void;
+  stations: IStation[];
+  stationLoading: boolean;
 };
 
 const PopularStations = ({
   mostPopularStations,
+  handleStationClick,
+  stations,
+  stationLoading,
 }: ChildPropsPopularStations) => {
+  const searchStation = (popularStation: IMostPopularStation) => {
+    if (stationLoading) {
+      return;
+    }
+    // I need to find station from stations array because
+    // mostPopularStations type doesn't have coordinates values
+    const station = stations.find(
+      (station) => station.id === popularStation.station_id
+    );
+    if (!station) {
+      return;
+    }
+    // after finding station we can pass it to handleStationClick function
+    handleStationClick(station);
+  };
+
   if (!mostPopularStations.length) {
     return <Loading />;
   }
@@ -34,6 +57,7 @@ const PopularStations = ({
           <tbody>
             {mostPopularStations.map((station, index) => (
               <tr
+                onClick={() => searchStation(station)}
                 key={station.station_id}
                 className="border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
               >

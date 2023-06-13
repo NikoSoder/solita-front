@@ -1,17 +1,15 @@
-import { useState, Dispatch } from "react";
+import { useState } from "react";
 import { IStation } from "../types/IStation";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 interface ChildPropsStationList {
   stations: IStation[];
-  setSelected: Dispatch<React.SetStateAction<IStation | null>>;
-  stationLoading: boolean;
+  handleStationClick: (station: IStation) => void;
 }
 
 const StationList = ({
   stations,
-  setSelected,
-  stationLoading,
+  handleStationClick,
 }: ChildPropsStationList) => {
   const [visibleItems, setVisibleItems] = useState(15);
   const [query, setQuery] = useState("");
@@ -23,14 +21,6 @@ const StationList = ({
       return station.name.toLowerCase().includes(query);
     }
   });
-
-  const handleStationClick = (station: IStation) => {
-    // avoid spam by returning if station is being fetched already
-    if (stationLoading) {
-      return;
-    }
-    setSelected(station);
-  };
 
   return (
     <div className="flex-1 grow">

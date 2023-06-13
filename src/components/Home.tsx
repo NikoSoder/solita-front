@@ -85,6 +85,14 @@ const Home = ({
     }
   };
 
+  const handleStationClick = (station: IStation) => {
+    // avoid spam by returning if station is being fetched already
+    if (stationLoading) {
+      return;
+    }
+    setSelected(station);
+  };
+
   if (!trips.length || !stations.length) {
     return <Loading />;
   }
@@ -127,8 +135,7 @@ const Home = ({
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
           <StationList
             stations={stations}
-            setSelected={setSelected}
-            stationLoading={stationLoading}
+            handleStationClick={handleStationClick}
           />
           <Station
             selected={selected}
@@ -137,7 +144,12 @@ const Home = ({
           />
         </div>
         <Map selected={selected} />
-        <PopularStations mostPopularStations={mostPopularStations} />
+        <PopularStations
+          mostPopularStations={mostPopularStations}
+          handleStationClick={handleStationClick}
+          stations={stations}
+          stationLoading={stationLoading}
+        />
       </div>
     </div>
   );

@@ -5,9 +5,8 @@ import { vi } from "vitest";
 
 describe("StationList", () => {
   const props = {
-    setSelected: vi.fn(),
+    handleStationClick: vi.fn(),
     stations: mockStations,
-    stationLoading: false,
   };
   it("renders StationList component", () => {
     render(<StationList {...props} />);
