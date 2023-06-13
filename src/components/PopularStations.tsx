@@ -59,10 +59,12 @@ const PopularStations = ({
               <tr
                 onClick={() => searchStation(station)}
                 key={station.station_id}
-                className="border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                className="group cursor-pointer border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
               >
                 <td>{index + 1}</td>
-                <td>{station.station_name}</td>
+                <td className="group-hover:underline">
+                  {station.station_name}
+                </td>
                 <td>{station.num_journeys}</td>
               </tr>
             ))}
