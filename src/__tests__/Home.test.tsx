@@ -13,6 +13,7 @@ describe("Home", () => {
     const setPage = vi.fn();
     const setSelected = vi.fn();
     const handlePageLimitChange = vi.fn();
+    const setLoading = vi.fn();
 
     render(
       <MemoryRouter>
@@ -29,6 +30,8 @@ describe("Home", () => {
           mostPopularStations={mockPopularStations}
           selectedPageLimit={"10"}
           handlePageLimitChange={handlePageLimitChange}
+          loading={false}
+          setLoading={setLoading}
         />
       </MemoryRouter>
     );
