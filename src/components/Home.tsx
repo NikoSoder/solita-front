@@ -27,6 +27,8 @@ interface ChildPropsHome {
   mostPopularStations: IMostPopularStation[];
   handlePageLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   selectedPageLimit: string;
+  loading: boolean;
+  setLoading: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Home = ({
@@ -41,8 +43,9 @@ const Home = ({
   mostPopularStations,
   handlePageLimitChange,
   selectedPageLimit,
+  loading,
+  setLoading,
 }: ChildPropsHome) => {
-  const [loading, setLoading] = useState(false);
   const [stationLoading, setStationLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
     departureCount: 0,
@@ -115,6 +118,7 @@ const Home = ({
               goToPage={goToPage}
               totalPageCount={totalPageCount}
               page={page}
+              loading={loading}
             />
           </div>
           <PageLimit

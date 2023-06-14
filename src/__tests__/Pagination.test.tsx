@@ -7,6 +7,7 @@ describe("Pagination", () => {
     goToPage: vi.fn(),
     page: 0,
     totalPageCount: 100,
+    loading: false,
   };
   it("renders the component with the correct page number", () => {
     const { getByText } = render(<Pagination {...props} />);
