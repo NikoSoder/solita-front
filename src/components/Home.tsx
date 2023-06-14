@@ -115,6 +115,7 @@ const Home = ({
               goToPage={goToPage}
               totalPageCount={totalPageCount}
               page={page}
+              loading={loading}
             />
           </div>
           <PageLimit
