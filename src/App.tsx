@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import { IMostPopularStation } from "./types/IFacts";
 import { Loading } from "./components/Loading";
 import { checkUserTheme } from "./utils/theme";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
@@ -90,6 +91,7 @@ const App = () => {
           }
         />
       </Routes>
+      <Footer />
     </HashRouter>
   );
 };
