@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import bike from "../assets/bike.svg";
 const LandingPage = () => {
   return (
-    <div className="landing-animation container mx-auto flex flex-col gap-10 p-3 py-10">
+    <div className="landing-animation container mx-auto flex flex-col gap-10 px-3 py-10">
       <div className="text-center">
         <h1 className="mb-1 text-5xl font-bold tracking-wide text-blue-900 dark:text-blue-200">
           Helsinki city bike
