@@ -69,7 +69,7 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <div className="min-h-screen from-slate-800 to-slate-900 dark:bg-gradient-to-t">
+            <>
               <Navbar />
               <Home
                 trips={trips}
@@ -86,7 +86,7 @@ const App = () => {
                 loading={loading}
                 setLoading={setLoading}
               />
-            </div>
+            </>
           }
         />
       </Routes>
