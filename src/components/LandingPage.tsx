@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import bike from "../assets/bike.svg";
+import siteDark from "../assets/site-dark.png";
+import siteLight from "../assets/site-light.png";
 const LandingPage = () => {
   return (
     <div className="landing-animation container mx-auto flex flex-col gap-10 px-3 py-10">
@@ -31,8 +32,12 @@ const LandingPage = () => {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="max-w-md">
-          <img className="w-full" src={bike} alt="Bike picture" />
+        <div className="max-w-2xl">
+          {document.documentElement.classList.contains("dark") ? (
+            <img className="w-full" src={siteDark} alt="Site picture" />
+          ) : (
+            <img className="w-full" src={siteLight} alt="Site picture" />
+          )}
         </div>
       </div>
     </div>
