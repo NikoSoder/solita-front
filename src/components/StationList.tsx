@@ -27,6 +27,7 @@ const StationList = ({
       <div className="relative mb-3 max-w-sm">
         <MagnifyingGlassIcon className="absolute left-2 top-2 h-6 w-6 text-slate-400" />
         <input
+          type="text"
           placeholder="Search stations"
           className="w-full rounded px-10 py-2 shadow-md outline-none dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300"
           value={query}
