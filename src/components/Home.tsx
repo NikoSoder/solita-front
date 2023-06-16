@@ -27,6 +27,8 @@ interface ChildPropsHome {
   mostPopularStations: IMostPopularStation[];
   handlePageLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   selectedPageLimit: string;
+  loading: boolean;
+  setLoading: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Home = ({
@@ -41,8 +43,9 @@ const Home = ({
   mostPopularStations,
   handlePageLimitChange,
   selectedPageLimit,
+  loading,
+  setLoading,
 }: ChildPropsHome) => {
-  const [loading, setLoading] = useState(false);
   const [stationLoading, setStationLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
     departureCount: 0,
@@ -85,6 +88,14 @@ const Home = ({
     }
   };
 
+  const handleStationClick = (station: IStation) => {
+    // avoid spam by returning if station is being fetched already
+    if (stationLoading) {
+      return;
+    }
+    setSelected(station);
+  };
+
   if (!trips.length || !stations.length) {
     return <Loading />;
   }
@@ -107,6 +118,7 @@ const Home = ({
               goToPage={goToPage}
               totalPageCount={totalPageCount}
               page={page}
+              loading={loading}
             />
           </div>
           <PageLimit
@@ -127,8 +139,7 @@ const Home = ({
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
           <StationList
             stations={stations}
-            setSelected={setSelected}
-            stationLoading={stationLoading}
+            handleStationClick={handleStationClick}
           />
           <Station
             selected={selected}
@@ -137,7 +148,12 @@ const Home = ({
           />
         </div>
         <Map selected={selected} />
-        <PopularStations mostPopularStations={mostPopularStations} />
+        <PopularStations
+          mostPopularStations={mostPopularStations}
+          handleStationClick={handleStationClick}
+          stations={stations}
+          stationLoading={stationLoading}
+        />
       </div>
     </div>
   );

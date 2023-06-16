@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import { IMostPopularStation } from "./types/IFacts";
 import { Loading } from "./components/Loading";
 import { checkUserTheme } from "./utils/theme";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
@@ -21,6 +22,7 @@ const App = () => {
     IMostPopularStation[]
   >([]);
   const [selectedPageLimit, setSelectedPageLimit] = useState("10");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,11 +50,13 @@ const App = () => {
   const handlePageLimitChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
+    setLoading(true);
     setSelectedPageLimit(event.target.value);
     const pageResponse = await apiService.getPage(0, event.target.value);
     setTrips(pageResponse.trips);
     setPage(0);
     setTotalPageCount(pageResponse.totalPageCount);
+    setLoading(false);
   };
 
   if (!selected) {
@@ -66,7 +70,7 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <div className="min-h-screen from-slate-800 to-slate-900 dark:bg-gradient-to-t">
+            <>
               <Navbar />
               <Home
                 trips={trips}
@@ -80,11 +84,14 @@ const App = () => {
                 mostPopularStations={mostPopularStations}
                 handlePageLimitChange={handlePageLimitChange}
                 selectedPageLimit={selectedPageLimit}
+                loading={loading}
+                setLoading={setLoading}
               />
-            </div>
+            </>
           }
         />
       </Routes>
+      <Footer />
     </HashRouter>
   );
 };
