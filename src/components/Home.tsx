@@ -63,11 +63,7 @@ const Home = ({
         });
         setStationLoading(false);
       } catch (error) {
-        // TODO: npm test is failing on this
-        /*   const errorMessage =
-          (error as ErrorResponse).response.data.error ??
-          "Something went wrong"; */
-        alert("Invalid station id");
+        throw new Error("Invalid station id");
       }
     };
     getStats();
@@ -84,7 +80,7 @@ const Home = ({
       setPage(pageNumber);
       setLoading(false);
     } catch (error) {
-      alert("Invalid page number");
+      throw new Error("Invalid page number");
     }
   };
 
