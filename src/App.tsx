@@ -39,8 +39,7 @@ const App = () => {
         setStations(stationsResponse);
         setMostPopularStations(mostPopularStationsResponse.busiestStations);
       } catch (error) {
-        console.log(error);
-        alert("Something went wrong");
+        throw new Error("Failed to fetch journeys and stations");
       }
     };
 
