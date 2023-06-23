@@ -34,9 +34,17 @@ const LandingPage = () => {
       <div className="flex justify-center">
         <div className="max-w-2xl">
           {document.documentElement.classList.contains("dark") ? (
-            <img className="w-full" src={siteDark} alt="Site picture" />
+            <img
+              className="w-full skew-y-6"
+              src={siteDark}
+              alt="Site picture"
+            />
           ) : (
-            <img className="w-full" src={siteLight} alt="Site picture" />
+            <img
+              className="w-full skew-y-6"
+              src={siteLight}
+              alt="Site picture"
+            />
           )}
         </div>
       </div>

@@ -17,17 +17,13 @@ const Navbar = () => {
     setIsLightTheme(!isLightTheme);
   };
   return (
-    <nav
-      className="flex items-center justify-between px-2 py-4 dark:text-gray-300 
-      sm:px-10"
-    >
+    <nav className="container fixed left-0 right-0 top-0 z-30 mx-auto flex items-center justify-between bg-slate-50/60 px-2 py-3 backdrop-blur dark:bg-slate-900/80">
       <div className="flex">
         <GlobeAltIcon className="h-8 w-8 text-neutral-800 dark:text-blue-200" />
         <Link to="/" className="text-2xl text-neutral-800 dark:text-blue-200">
           City Bike Helsinki
         </Link>
       </div>
-
       <div>
         {isLightTheme ? (
           <button

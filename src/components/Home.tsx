@@ -97,7 +97,7 @@ const Home = ({
   }
 
   return (
-    <div className="container mx-auto flex flex-col gap-6 p-3 py-10 lg:flex-row">
+    <div className="container mx-auto flex flex-col gap-6 p-3 pb-10 pt-20 lg:flex-row">
       {/* trips view */}
       <div className="drop-shadow-lg lg:w-2/3">
         <div
