@@ -63,11 +63,7 @@ const Home = ({
         });
         setStationLoading(false);
       } catch (error) {
-        // TODO: npm test is failing on this
-        /*   const errorMessage =
-          (error as ErrorResponse).response.data.error ??
-          "Something went wrong"; */
-        alert("Invalid station id");
+        throw new Error("Invalid station id");
       }
     };
     getStats();
@@ -84,7 +80,7 @@ const Home = ({
       setPage(pageNumber);
       setLoading(false);
     } catch (error) {
-      alert("Invalid page number");
+      throw new Error("Invalid page number");
     }
   };
 
@@ -101,7 +97,7 @@ const Home = ({
   }
 
   return (
-    <div className="container mx-auto flex flex-col gap-6 p-3 py-10 lg:flex-row">
+    <div className="container mx-auto flex flex-col gap-6 p-3 pb-10 pt-20 lg:flex-row">
       {/* trips view */}
       <div className="drop-shadow-lg lg:w-2/3">
         <div
