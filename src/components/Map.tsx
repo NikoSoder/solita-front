@@ -21,7 +21,7 @@ const Map = ({ selected }: ChildPropsMap) => {
         center={[Number(selected.y), Number(selected.x)]}
         zoom={11}
         scrollWheelZoom={true}
-        style={{ height: "327px", width: "auto" }}
+        style={{ height: "327px", width: "auto", zIndex: "10" }}
       >
         <ChangeView selected={selected} />
         <TileLayer
