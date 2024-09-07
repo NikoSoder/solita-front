@@ -15,8 +15,6 @@ import Footer from "./components/Footer";
 const App = () => {
   const [trips, setTrips] = useState<ITrip[]>([]);
   const [stations, setStations] = useState<IStation[]>([]);
-  const [page, setPage] = useState(0);
-  const [totalPageCount, setTotalPageCount] = useState(1);
   const [selected, setSelected] = useState<IStation | null>(null);
   const [mostPopularStations, setMostPopularStations] = useState<
     IMostPopularStation[]
@@ -34,7 +32,6 @@ const App = () => {
         const mostPopularStationsResponse =
           await apiService.getInterestingFacts();
         setTrips(tripsResponse.trips);
-        setTotalPageCount(tripsResponse.totalPageCount);
         setStations(stationsResponse);
         setMostPopularStations(mostPopularStationsResponse.busiestStations);
       } catch (error) {
@@ -62,9 +59,6 @@ const App = () => {
                 trips={trips}
                 setTrips={setTrips}
                 stations={stations}
-                page={page}
-                setPage={setPage}
-                totalPageCount={totalPageCount}
                 selected={selected}
                 setSelected={setSelected}
                 mostPopularStations={mostPopularStations}
