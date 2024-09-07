@@ -11,7 +11,6 @@ import { Loading } from "./Loading";
 import { useEffect } from "react";
 import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
-import PageLimit from "./PageLimit";
 import Map from "./Map";
 import StationList from "./StationList";
 
@@ -25,8 +24,6 @@ interface ChildPropsHome {
   selected: IStation;
   setSelected: Dispatch<React.SetStateAction<IStation | null>>;
   mostPopularStations: IMostPopularStation[];
-  handlePageLimitChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  selectedPageLimit: string;
   loading: boolean;
   setLoading: Dispatch<React.SetStateAction<boolean>>;
 }
@@ -41,8 +38,6 @@ const Home = ({
   selected,
   setSelected,
   mostPopularStations,
-  handlePageLimitChange,
-  selectedPageLimit,
   loading,
   setLoading,
 }: ChildPropsHome) => {
