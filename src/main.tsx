@@ -5,11 +5,16 @@ import "./index.css";
 import "leaflet/dist/leaflet.css";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
 import ErrorMessage from "./components/ErrorMessage.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary fallback={<ErrorMessage />}>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );
