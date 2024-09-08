@@ -3,6 +3,7 @@ import { useState } from "react";
 import apiService from "../services/api-service";
 import Table from "./Table";
 import Pagination from "./Pagination";
+import { Loading } from "./Loading";
 
 export function Trips() {
   const [page, setPage] = useState(0);
@@ -13,6 +14,16 @@ export function Trips() {
     placeholderData: keepPreviousData,
     staleTime: 60 * 60 * 1000, // 60 minutes
   });
+
+  function checkTripPageStatus() {
+    if (isPending) {
+      return <Loading />;
+    }
+    if (isError) {
+      return <div className="text-center">Error: {error.message}</div>;
+    }
+    return <Table trips={data.trips} />;
+  }
 
   return (
     <div className="drop-shadow-lg dark:text-slate-100 lg:w-2/3">
@@ -32,15 +43,8 @@ export function Trips() {
           isPlaceholderData={isPlaceholderData}
         />
       </div>
-
       {/* trips data */}
-      {isPending ? (
-        <div>Loading...</div>
-      ) : isError ? (
-        <div>Error: {error.message}</div>
-      ) : (
-        <Table trips={data.trips} />
-      )}
+      {checkTripPageStatus()}
     </div>
   );
 }
