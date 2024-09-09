@@ -1,67 +1,51 @@
-import { useState, Dispatch, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IStation, IStationStats } from "../types/IStation";
-import { ITrip } from "../types/ITrip";
 import Station from "./Station";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
 import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import Map from "./Map";
-import StationList from "./StationList";
 import { Trips } from "./Trips";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import React from "react";
+import StationList from "./StationList";
 
 interface ChildPropsHome {
-  trips: ITrip[];
-  setTrips: Dispatch<React.SetStateAction<ITrip[]>>;
-  stations: IStation[];
-  selected: IStation;
-  setSelected: Dispatch<React.SetStateAction<IStation | null>>;
   mostPopularStations: IMostPopularStation[];
-  loading: boolean;
-  setLoading: Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Home = ({
-  trips,
-  stations,
-  selected,
-  setSelected,
-  mostPopularStations,
-}: ChildPropsHome) => {
+const Home = ({ mostPopularStations }: ChildPropsHome) => {
   const [stationLoading, setStationLoading] = useState(false);
   const [stationStats, setStationStats] = useState<IStationStats>({
     departureCount: 0,
     returnCount: 0,
   });
 
-  useEffect(() => {
-    const getStats = async () => {
-      try {
-        setStationLoading(true);
-        const response = await apiService.getStats(selected.id);
-        setStationStats({
-          departureCount: response.departureCount,
-          returnCount: response.returnCount,
-        });
-        setStationLoading(false);
-      } catch (error) {
-        throw new Error("Invalid station id");
-      }
-    };
-    getStats();
-  }, [selected]);
+  // useEffect(() => {
+  //   const getStats = async () => {
+  //     try {
+  //       setStationLoading(true);
+  //       const response = await apiService.getStats(selected.id);
+  //       setStationStats({
+  //         departureCount: response.departureCount,
+  //         returnCount: response.returnCount,
+  //       });
+  //       setStationLoading(false);
+  //     } catch (error) {
+  //       throw new Error("Invalid station id");
+  //     }
+  //   };
+  //   getStats();
+  // }, [selected]);
 
-  const handleStationClick = (station: IStation) => {
-    // avoid spam by returning if station is being fetched already
-    if (stationLoading) {
-      return;
-    }
-    setSelected(station);
-  };
-
-  if (!trips.length || !stations.length) {
-    return <Loading />;
-  }
+  // const handleStationClick = (station: IStation) => {
+  //   // avoid spam by returning if station is being fetched already
+  //   if (stationLoading) {
+  //     return;
+  //   }
+  //   setSelected(station);
+  // };
 
   return (
     <div className="container mx-auto flex flex-col gap-6 p-3 pb-10 pt-20 lg:flex-row">
@@ -75,23 +59,20 @@ const Home = ({
           </h2>
         </div>
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
-          <StationList
-            stations={stations}
-            handleStationClick={handleStationClick}
-          />
-          <Station
+          <StationList />
+          {/* <Station
             selected={selected}
             stationStats={stationStats}
             stationLoading={stationLoading}
-          />
+          /> */}
         </div>
-        <Map selected={selected} />
+        {/* <Map selected={selected} />
         <PopularStations
           mostPopularStations={mostPopularStations}
           handleStationClick={handleStationClick}
           stations={stations}
           stationLoading={stationLoading}
-        />
+        /> */}
       </div>
     </div>
   );
