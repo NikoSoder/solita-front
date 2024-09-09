@@ -24,7 +24,7 @@ const Station = ({
         <>
           <div className="mb-6 border-b dark:border-slate-700">
             <h2 className="text-lg text-slate-900 dark:text-slate-200">
-              {selected.name}
+              {selected.nimi}
             </h2>
           </div>
           <div className="-ml-1 flex flex-col gap-5">

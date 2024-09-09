@@ -38,7 +38,7 @@ const Map = ({ selected }: ChildPropsMap) => {
             })
           }
         >
-          <Popup>{selected.name}</Popup>
+          <Popup>{selected.nimi}</Popup>
         </Marker>
       </MapContainer>
     </>

@@ -1,12 +1,16 @@
 import axios from "axios";
-import { IStation, IStationStats } from "../types/IStation";
+import { IStation, IStationStats, StationData } from "../types/IStation";
 import { IPageResponse } from "../types/ITrip";
 import { IFacts } from "../types/IFacts";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
-const getStations = async (): Promise<IStation[]> => {
-  const response = await axios.get(baseUrl + "stations");
+const getStations = async ({
+  pageParam,
+}: {
+  pageParam: number;
+}): Promise<StationData> => {
+  const response = await axios.get(`${baseUrl}stations?page=${pageParam}`);
   return response.data;
 };
 
