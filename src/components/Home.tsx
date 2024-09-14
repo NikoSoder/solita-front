@@ -1,24 +1,14 @@
 import { useState } from "react";
-import { IStation } from "../types/IStation";
 import Station from "./Station";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
-import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import Map from "./Map";
 import { Trips } from "./Trips";
-import {
-  keepPreviousData,
-  useInfiniteQuery,
-  useQuery,
-} from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import StationList from "./StationList";
 
-interface ChildPropsHome {
-  mostPopularStations: IMostPopularStation[];
-}
-
-const Home = ({ mostPopularStations }: ChildPropsHome) => {
+const Home = () => {
   const [activeStationId, setActiveStationId] = useState("204"); // TODO: fix hardcoded id
 
   const { isPending, isError, error, data, isFetching } = useQuery({
@@ -38,14 +28,11 @@ const Home = ({ mostPopularStations }: ChildPropsHome) => {
     return <Station station={data} isFetching={isFetching} />;
   }
 
-  const handleStationClick = (station: IStation) => {
-    if (activeStationId === station.id) return;
-    if (isFetching) {
-      console.log("returning because isFetching is true");
-      return;
-    }
-    console.log(station);
-    setActiveStationId(station.id);
+  const handleStationClick = (stationId: string) => {
+    if (activeStationId === stationId) return;
+    if (isFetching) return;
+
+    setActiveStationId(stationId);
   };
 
   return (
@@ -63,13 +50,14 @@ const Home = ({ mostPopularStations }: ChildPropsHome) => {
           <StationList handleStationClick={handleStationClick} />
           {checkSelectedStationStatus()}
         </div>
-        {/* <Map selected={selected} />
-        <PopularStations
-          mostPopularStations={mostPopularStations}
-          handleStationClick={handleStationClick}
-          stations={stations}
-          stationLoading={stationLoading}
-        /> */}
+        {isPending ? (
+          <Loading />
+        ) : isError ? (
+          <div className="text-center">Error: {error.message}</div>
+        ) : (
+          <Map selected={data.station} />
+        )}
+        <PopularStations handleStationClick={handleStationClick} />
       </div>
     </div>
   );

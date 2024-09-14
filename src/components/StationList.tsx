@@ -2,10 +2,9 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import apiService from "../services/api-service";
 import React from "react";
 import { Loading } from "./Loading";
-import { IStation } from "../types/IStation";
 
 interface ChildPropsStationList {
-  handleStationClick: (station: IStation) => void;
+  handleStationClick: (stationId: string) => void;
 }
 
 const StationList = ({ handleStationClick }: ChildPropsStationList) => {
@@ -47,7 +46,7 @@ const StationList = ({ handleStationClick }: ChildPropsStationList) => {
             <React.Fragment key={i}>
               {group.data.map((station) => (
                 <li
-                  onClick={() => handleStationClick(station)}
+                  onClick={() => handleStationClick(station.id)}
                   className="cursor-pointer px-6 py-2 hover:bg-sky-600 hover:text-white dark:hover:bg-sky-700"
                   key={station.id}
                 >
