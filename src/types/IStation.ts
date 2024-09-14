@@ -2,6 +2,11 @@ export interface StationData {
   data: IStation[];
 }
 
+export interface ISelectedStation {
+  station: IStation;
+  statistics: IStationStats;
+}
+
 export interface IStation {
   id: string;
   nimi: string;

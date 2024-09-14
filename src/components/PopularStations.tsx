@@ -1,38 +1,23 @@
-import { IMostPopularStation } from "../types/IFacts";
+import { useQuery } from "@tanstack/react-query";
+import apiService from "../services/api-service";
 import { Loading } from "./Loading";
-import { IStation } from "../types/IStation";
 
 type ChildPropsPopularStations = {
-  mostPopularStations: IMostPopularStation[];
-  handleStationClick: (station: IStation) => void;
-  stations: IStation[];
-  stationLoading: boolean;
+  handleStationClick: (stationId: string) => void;
 };
 
-const PopularStations = ({
-  mostPopularStations,
-  handleStationClick,
-  stations,
-  stationLoading,
-}: ChildPropsPopularStations) => {
-  const searchStation = (popularStation: IMostPopularStation) => {
-    if (stationLoading) {
-      return;
-    }
-    // I need to find station from stations array because
-    // mostPopularStations type doesn't have coordinates values
-    const station = stations.find(
-      (station) => station.id === popularStation.station_id
-    );
-    if (!station) {
-      return;
-    }
-    // after finding station we can pass it to handleStationClick function
-    handleStationClick(station);
-  };
+const PopularStations = ({ handleStationClick }: ChildPropsPopularStations) => {
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ["mostPopularStations"],
+    queryFn: apiService.getInterestingFacts,
+  });
 
-  if (!mostPopularStations.length) {
+  if (isPending) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
   }
 
   return (
@@ -55,9 +40,9 @@ const PopularStations = ({
             </tr>
           </thead>
           <tbody>
-            {mostPopularStations.map((station, index) => (
+            {data.busiestStations.map((station, index) => (
               <tr
-                onClick={() => searchStation(station)}
+                onClick={() => handleStationClick(station.station_id)}
                 key={station.station_id}
                 className="group cursor-pointer border-b bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
               >

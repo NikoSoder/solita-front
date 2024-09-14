@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IStation, IStationStats, StationData } from "../types/IStation";
+import { ISelectedStation, IStation, StationData } from "../types/IStation";
 import { IPageResponse } from "../types/ITrip";
 import { IFacts } from "../types/IFacts";
 
@@ -19,7 +19,7 @@ const getTrip = async (id: string): Promise<IStation> => {
   return response.data;
 };
 
-const getStats = async (id: string): Promise<IStationStats> => {
+const getStats = async (id: string): Promise<ISelectedStation> => {
   const response = await axios.get(`${baseUrl}trips/stats/${id}`);
   return response.data;
 };
