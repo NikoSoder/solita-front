@@ -5,9 +5,10 @@ export default {
   theme: {
     extend: {
       animation: {
-        spinY: "spinY 2s linear infinite",
+        spinY: "spinY 1s linear infinite",
       },
       keyframes: {
+        // loading animation from https://letterboxd.com
         spinY: {
           "0%": { transform: "rotateY(90deg)", background: "#209CE4" },
           "33.3%": { transform: "rotateY(270deg)", background: "#209CE4" },

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { IStation, IStationStats } from "../types/IStation";
+import { useState } from "react";
+import { IStation } from "../types/IStation";
 import Station from "./Station";
 import apiService from "../services/api-service";
 import { Loading } from "./Loading";
@@ -7,8 +7,11 @@ import { IMostPopularStation } from "../types/IFacts";
 import PopularStations from "./PopularStations";
 import Map from "./Map";
 import { Trips } from "./Trips";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import React from "react";
+import {
+  keepPreviousData,
+  useInfiniteQuery,
+  useQuery,
+} from "@tanstack/react-query";
 import StationList from "./StationList";
 
 interface ChildPropsHome {
@@ -16,36 +19,34 @@ interface ChildPropsHome {
 }
 
 const Home = ({ mostPopularStations }: ChildPropsHome) => {
-  const [stationLoading, setStationLoading] = useState(false);
-  const [stationStats, setStationStats] = useState<IStationStats>({
-    departureCount: 0,
-    returnCount: 0,
+  const [activeStationId, setActiveStationId] = useState("204"); // TODO: fix hardcoded id
+
+  const { isPending, isError, error, data, isFetching } = useQuery({
+    queryKey: ["activeStation", activeStationId],
+    queryFn: () => apiService.getStats(activeStationId),
+    placeholderData: keepPreviousData,
+    staleTime: 60 * 60 * 1000, // 60 minutes
   });
 
-  // useEffect(() => {
-  //   const getStats = async () => {
-  //     try {
-  //       setStationLoading(true);
-  //       const response = await apiService.getStats(selected.id);
-  //       setStationStats({
-  //         departureCount: response.departureCount,
-  //         returnCount: response.returnCount,
-  //       });
-  //       setStationLoading(false);
-  //     } catch (error) {
-  //       throw new Error("Invalid station id");
-  //     }
-  //   };
-  //   getStats();
-  // }, [selected]);
+  function checkSelectedStationStatus() {
+    if (isPending) {
+      return <Loading />;
+    }
+    if (isError) {
+      return <div className="text-center">Error: {error.message}</div>;
+    }
+    return <Station station={data} isFetching={isFetching} />;
+  }
 
-  // const handleStationClick = (station: IStation) => {
-  //   // avoid spam by returning if station is being fetched already
-  //   if (stationLoading) {
-  //     return;
-  //   }
-  //   setSelected(station);
-  // };
+  const handleStationClick = (station: IStation) => {
+    if (activeStationId === station.id) return;
+    if (isFetching) {
+      console.log("returning because isFetching is true");
+      return;
+    }
+    console.log(station);
+    setActiveStationId(station.id);
+  };
 
   return (
     <div className="container mx-auto flex flex-col gap-6 p-3 pb-10 pt-20 lg:flex-row">
@@ -59,12 +60,8 @@ const Home = ({ mostPopularStations }: ChildPropsHome) => {
           </h2>
         </div>
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
-          <StationList />
-          {/* <Station
-            selected={selected}
-            stationStats={stationStats}
-            stationLoading={stationLoading}
-          /> */}
+          <StationList handleStationClick={handleStationClick} />
+          {checkSelectedStationStatus()}
         </div>
         {/* <Map selected={selected} />
         <PopularStations

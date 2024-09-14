@@ -6,3 +6,11 @@ export const Loading = () => {
     </div>
   );
 };
+
+export const LoadingSmall = () => {
+  return (
+    <div className="flex items-center justify-center text-slate-300">
+      <div className="me-2 h-4 w-4 animate-spinY rounded-full"></div>
+    </div>
+  );
+};
