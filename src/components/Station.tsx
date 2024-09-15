@@ -10,7 +10,7 @@ type ChildPropsStation = {
 
 const Station = ({ station, isFetching }: ChildPropsStation) => {
   return (
-    <div className="min-h-[231px] max-w-sm flex-1 rounded border border-transparent bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
+    <div className="flex-1 rounded border border-transparent bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
       <div className="mb-6 flex items-center justify-between border-b dark:border-slate-700">
         <h2 className="text-lg text-slate-900 dark:text-slate-200">
           {station.station.osoite}

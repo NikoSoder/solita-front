@@ -14,3 +14,14 @@ export const LoadingSmall = () => {
     </div>
   );
 };
+
+export const LoadingSkeleton = ({ height }: { height: string }) => {
+  return (
+    <div
+      className="mx-auto w-full rounded-md"
+      style={{ height: `${height}px` }}
+    >
+      <div className="h-full animate-pulse rounded-lg bg-slate-100 p-4 dark:bg-slate-700"></div>
+    </div>
+  );
+};

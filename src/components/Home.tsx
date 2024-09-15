@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Station from "./Station";
 import apiService from "../services/api-service";
-import { Loading } from "./Loading";
+import { LoadingSkeleton } from "./Loading";
 import PopularStations from "./PopularStations";
 import Map from "./Map";
 import { Trips } from "./Trips";
@@ -20,7 +20,11 @@ const Home = () => {
 
   function checkSelectedStationStatus() {
     if (isPending) {
-      return <Loading />;
+      return (
+        <div className="flex-1 grow">
+          <LoadingSkeleton height="231" />;
+        </div>
+      );
     }
     if (isError) {
       return <div className="text-center">Error: {error.message}</div>;

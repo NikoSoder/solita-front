@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import apiService from "../services/api-service";
-import { Loading } from "./Loading";
+import { LoadingSkeleton } from "./Loading";
 
 type ChildPropsPopularStations = {
   handleStationClick: (stationId: string) => void;
@@ -13,7 +13,7 @@ const PopularStations = ({ handleStationClick }: ChildPropsPopularStations) => {
   });
 
   if (isPending) {
-    return <Loading />;
+    return <LoadingSkeleton height="401" />;
   }
 
   if (isError) {
