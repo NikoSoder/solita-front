@@ -3,7 +3,7 @@ import { useState } from "react";
 import apiService from "../services/api-service";
 import Table from "./Table";
 import Pagination from "./Pagination";
-import { Loading } from "./Loading";
+import { LoadingSkeleton } from "./Loading";
 
 export function Trips() {
   const [page, setPage] = useState(0);
@@ -17,7 +17,7 @@ export function Trips() {
 
   function checkTripPageStatus() {
     if (isPending) {
-      return <Loading />;
+      return <LoadingSkeleton height="700" />;
     }
     if (isError) {
       return <div className="text-center">Error: {error.message}</div>;
@@ -26,7 +26,7 @@ export function Trips() {
   }
 
   return (
-    <div className="drop-shadow-lg dark:text-slate-100 lg:w-2/3">
+    <div className="drop-shadow-lg dark:text-slate-100">
       {/* pagination */}
       <div
         className="relative flex flex-col gap-2 rounded-t-lg bg-white p-4

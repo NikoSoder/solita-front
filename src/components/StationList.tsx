@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiService from "../services/api-service";
 import React from "react";
-import { Loading } from "./Loading";
+import { LoadingSkeleton } from "./Loading";
 
 interface ChildPropsStationList {
   handleStationClick: (stationId: string) => void;
@@ -31,7 +31,11 @@ const StationList = ({ handleStationClick }: ChildPropsStationList) => {
   });
 
   if (isPending) {
-    return <Loading />;
+    return (
+      <div className="flex-1 grow">
+        <LoadingSkeleton height="288" />;
+      </div>
+    );
   }
 
   if (error) {
@@ -40,7 +44,7 @@ const StationList = ({ handleStationClick }: ChildPropsStationList) => {
 
   return (
     <div className="flex-1 grow">
-      <div className="flex max-h-72 max-w-sm grow flex-col overflow-y-auto rounded bg-white shadow-md dark:border dark:border-slate-500 dark:bg-slate-800">
+      <div className="flex max-h-72 grow flex-col overflow-y-auto rounded bg-white shadow-md dark:border dark:border-slate-500 dark:bg-slate-800">
         <ul className="flex flex-col text-slate-700 dark:text-slate-300">
           {data.pages.map((group, i) => (
             <React.Fragment key={i}>
