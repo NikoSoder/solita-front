@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import siteDark from "../assets/site-dark.png";
 import siteLight from "../assets/site-light.png";
 const LandingPage = () => {
+  const isDarkTheme = document.documentElement.classList.contains("dark");
   return (
-    <div className="landing-animation container mx-auto flex flex-col gap-10 px-3 py-10">
+    <div className="container mx-auto flex flex-col gap-10 px-3 py-10">
       <div className="text-center">
         <h1 className="mb-1 text-5xl font-bold tracking-wide text-blue-900 dark:text-blue-200">
           Helsinki city bike
@@ -32,21 +33,11 @@ const LandingPage = () => {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="max-w-2xl">
-          {document.documentElement.classList.contains("dark") ? (
-            <img
-              className="w-full skew-y-6"
-              src={siteDark}
-              alt="Site picture"
-            />
-          ) : (
-            <img
-              className="w-full skew-y-6"
-              src={siteLight}
-              alt="Site picture"
-            />
-          )}
-        </div>
+        <img
+          className="aspect-[56/41] w-full max-w-2xl skew-y-6"
+          src={isDarkTheme ? siteDark : siteLight}
+          alt="Site picture"
+        />
       </div>
     </div>
   );
