@@ -7,6 +7,7 @@ import Map from "./Map";
 import { Trips } from "./Trips";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import StationList from "./StationList";
+import { PeakTimes } from "./PeakTimes";
 
 const Home = () => {
   const [activeStationId, setActiveStationId] = useState("204"); // TODO: fix hardcoded id
@@ -43,7 +44,8 @@ const Home = () => {
     <div className="container mx-auto flex flex-col gap-6 p-3 pb-10 pt-20 lg:flex-row">
       {/* trips view table */}
       <div className="flex flex-col gap-4 lg:w-2/3">
-        <Trips />
+        <PeakTimes activeStationId={activeStationId} />
+        {/* <Trips /> */}
         {isPending ? (
           <LoadingSkeleton height="327" />
         ) : isError ? (
