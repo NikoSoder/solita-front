@@ -1,11 +1,11 @@
-// TODO:
-// fix height change when switching days
+// TODO: fix mobile view
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import apiService from "../services/api-service";
 import { useState } from "react";
 import { LoadingSkeleton, LoadingSmall } from "./Loading";
 import { daysOfTheWeek } from "../utils/daysOfTheWeek";
 
+const CHART_MAX_HEIGHT = 120;
 type ChildPropsPeakTimes = {
   activeStationId: string;
 };
@@ -29,8 +29,10 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
     return <div>Error: {error.message}</div>;
   }
 
+  const maxDeparturesToday = Math.max(...data.map((d) => Number(d.departures)));
+
   return (
-    <div className="overflow-x-auto rounded bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
+    <div className="relative overflow-x-auto rounded bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
       <div className="mb-10 flex justify-between gap-10">
         {daysOfTheWeek.map((day) => (
           <button
@@ -46,7 +48,11 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
           </button>
         ))}
       </div>
-      {/* {isFetching ? <LoadingSmall /> : null} */}
+      {isFetching ? (
+        <div className="absolute right-2 top-2">
+          <LoadingSmall />
+        </div>
+      ) : null}
       <div className="flex items-end justify-between gap-10">
         {data.map((hour) => (
           <div
@@ -54,7 +60,12 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
             className="flex flex-col items-center gap-2"
           >
             <p
-              style={{ height: `${hour.departures}px` }}
+              style={{
+                height: `${
+                  (Number(hour.departures) / maxDeparturesToday) *
+                  CHART_MAX_HEIGHT
+                }px`,
+              }}
               className="w-3 rounded-md bg-slate-500"
             ></p>
             <p>{hour.departures}</p>
