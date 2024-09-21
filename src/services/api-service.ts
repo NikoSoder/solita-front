@@ -2,6 +2,7 @@ import axios from "axios";
 import { ISelectedStation, IStation, StationData } from "../types/IStation";
 import { IPageResponse } from "../types/ITrip";
 import { IFacts } from "../types/IFacts";
+import { IPeakTimes } from "../types/IPeakTimes";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -34,10 +35,21 @@ const getInterestingFacts = async (): Promise<IFacts> => {
   return response.data;
 };
 
+const getPeakTimes = async (
+  stationId: string,
+  weekDayIndex: string
+): Promise<IPeakTimes[]> => {
+  const response = await axios.get(
+    `${baseUrl}statistics/peaktime/station/${stationId}/weekday/${weekDayIndex}`
+  );
+  return response.data;
+};
+
 export default {
   getStations,
   getTrip,
   getPage,
   getStats,
   getInterestingFacts,
+  getPeakTimes,
 };
