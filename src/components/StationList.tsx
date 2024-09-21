@@ -13,9 +13,7 @@ const StationList = ({ handleStationClick }: ChildPropsStationList) => {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetching,
     isFetchingNextPage,
-    status,
     isPending,
   } = useInfiniteQuery({
     queryKey: ["stations"],
