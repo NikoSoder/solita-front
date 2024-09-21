@@ -23,7 +23,7 @@ const Home = () => {
     if (isPending) {
       return (
         <div className="flex-1 grow">
-          <LoadingSkeleton height="231" />;
+          <LoadingSkeleton height="231" />
         </div>
       );
     }
@@ -44,6 +44,11 @@ const Home = () => {
     <div className="container mx-auto flex flex-col gap-6 p-3 pb-10 pt-20 lg:flex-row">
       {/* trips view table */}
       <div className="flex flex-col gap-4 lg:w-2/3">
+        <div>
+          <h2 className="text-xl tracking-wide dark:text-slate-100">
+            Hourly Departures by Day
+          </h2>
+        </div>
         <PeakTimes activeStationId={activeStationId} />
         {/* <Trips /> */}
         {isPending ? (

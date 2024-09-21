@@ -33,7 +33,7 @@ const StationList = ({ handleStationClick }: ChildPropsStationList) => {
   if (isPending) {
     return (
       <div className="flex-1 grow">
-        <LoadingSkeleton height="288" />;
+        <LoadingSkeleton height="288" />
       </div>
     );
   }
