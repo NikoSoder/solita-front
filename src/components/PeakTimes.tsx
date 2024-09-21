@@ -4,26 +4,19 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import apiService from "../services/api-service";
 import { useState } from "react";
 import { LoadingSkeleton, LoadingSmall } from "./Loading";
+import { daysOfTheWeek } from "../utils/daysOfTheWeek";
 
 type ChildPropsPeakTimes = {
   activeStationId: string;
 };
 
-enum DayOfTheWeek {
-  Sunday,
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
-  Saturday,
-}
-
 export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
-  const [weekDay, setWeekDay] = useState<DayOfTheWeek>(DayOfTheWeek.Monday);
+  const [weekDayIndex, setWeekDayIndex] = useState<string>(
+    daysOfTheWeek[0].dowIndex
+  );
   const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ["peakTimes", { activeStationId, weekDay }],
-    queryFn: () => apiService.getPeakTimes(activeStationId, weekDay),
+    queryKey: ["peakTimes", { activeStationId, weekDayIndex }],
+    queryFn: () => apiService.getPeakTimes(activeStationId, weekDayIndex),
     placeholderData: keepPreviousData,
     staleTime: 60 * 60 * 1000, // 60 minutes
   });
@@ -35,32 +28,21 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  const dayNames = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
 
   return (
     <div className="overflow-x-auto rounded bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
       <div className="mb-10 flex justify-between gap-10">
-        {dayNames.map((dayName) => (
+        {daysOfTheWeek.map((day) => (
           <button
-            key={dayName}
-            onClick={() =>
-              setWeekDay(DayOfTheWeek[dayName as keyof typeof DayOfTheWeek])
-            }
+            key={day.day}
+            onClick={() => setWeekDayIndex(day.dowIndex)}
             className={`${
-              weekDay === DayOfTheWeek[dayName as keyof typeof DayOfTheWeek]
+              weekDayIndex === day.dowIndex
                 ? "underline underline-offset-8"
                 : ""
             }`}
           >
-            {dayName.slice(0, 3)}
+            {day.day}
           </button>
         ))}
       </div>

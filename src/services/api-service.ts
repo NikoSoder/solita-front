@@ -37,11 +37,11 @@ const getInterestingFacts = async (): Promise<IFacts> => {
 
 const getPeakTimes = async (
   stationId: string,
-  weekDay: number
+  weekDayIndex: string
 ): Promise<IPeakTimes[]> => {
   console.log("here");
   const response = await axios.get(
-    `${baseUrl}statistics/peaktime/station/${stationId}/weekday/${weekDay}`
+    `${baseUrl}statistics/peaktime/station/${stationId}/weekday/${weekDayIndex}`
   );
   return response.data;
 };
