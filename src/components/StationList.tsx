@@ -20,7 +20,7 @@ const StationList = ({ handleStationClick }: ChildPropsStationList) => {
     queryFn: apiService.getStations,
     staleTime: 60 * 60 * 1000, // 60 minutes
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
       if (lastPage.data.length === 0) {
         return undefined;
       }

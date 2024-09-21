@@ -11,7 +11,7 @@ interface State {
 
 class ErrorBoundary extends React.Component<Props, State> {
   state = { hasError: false };
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
