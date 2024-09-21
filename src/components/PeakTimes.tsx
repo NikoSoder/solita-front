@@ -1,4 +1,3 @@
-// TODO: fix mobile view
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import apiService from "../services/api-service";
 import { useState } from "react";
@@ -22,7 +21,7 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
   });
 
   if (isPending) {
-    return <LoadingSkeleton height="288" />;
+    return <LoadingSkeleton height="314" />;
   }
 
   if (error) {
@@ -32,8 +31,8 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
   const maxDeparturesToday = Math.max(...data.map((d) => Number(d.departures)));
 
   return (
-    <div className="relative overflow-x-auto rounded bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
-      <div className="mb-10 flex justify-between gap-10">
+    <div className="relative rounded bg-white p-6 text-slate-600 shadow-md dark:border dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300">
+      <div className="mb-10 flex justify-around gap-4">
         {daysOfTheWeek.map((day) => (
           <button
             key={day.day}
@@ -44,7 +43,8 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
                 : ""
             }`}
           >
-            {day.day}
+            <p className="block sm:hidden">{day.day.charAt(0)}</p>
+            <p className="hidden sm:block">{day.day}</p>
           </button>
         ))}
       </div>
@@ -53,7 +53,7 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
           <LoadingSmall />
         </div>
       ) : null}
-      <div className="flex items-end justify-between gap-10">
+      <div className="flex items-end justify-between gap-10 overflow-x-auto py-2">
         {data.map((hour) => (
           <div
             key={hour.hour_of_day}
@@ -66,7 +66,11 @@ export function PeakTimes({ activeStationId }: ChildPropsPeakTimes) {
                   CHART_MAX_HEIGHT
                 }px`,
               }}
-              className="w-3 rounded-md bg-slate-500"
+              className={`w-3 rounded-md ${
+                Number(hour.departures) === maxDeparturesToday
+                  ? "bg-sky-500 dark:bg-slate-300"
+                  : "bg-sky-200 dark:bg-slate-500"
+              }`}
             ></p>
             <p>{hour.departures}</p>
             <p>{hour.hour_of_day}</p>

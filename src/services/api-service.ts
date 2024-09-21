@@ -39,7 +39,6 @@ const getPeakTimes = async (
   stationId: string,
   weekDayIndex: string
 ): Promise<IPeakTimes[]> => {
-  console.log("here");
   const response = await axios.get(
     `${baseUrl}statistics/peaktime/station/${stationId}/weekday/${weekDayIndex}`
   );
