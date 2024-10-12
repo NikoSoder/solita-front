@@ -24,7 +24,7 @@ const PopularStations = ({ handleStationClick }: ChildPropsPopularStations) => {
     <div className="drop-shadow-lg">
       <div className="rounded-t-lg bg-white p-4 dark:bg-slate-700">
         <h2 className="text-xl tracking-wide dark:text-slate-100">
-          Most busiest stations
+          Busiest stations
         </h2>
       </div>
       <div className="overflow-x-auto">
